@@ -734,16 +734,7 @@
       return url.toString();
     }
 
-    async function apiGet(path){
-      const res = await fetch(buildApiUrl(path), { credentials:'include' });
-      return res.json();
-    }
 
-    async function apiPost(path, body){
-      const res = await fetch(buildApiUrl(path), {
-        method:'POST',
-        credentials:'include',
-        headers:{'Content-Type':'application/json'},
         body: JSON.stringify(body)
       });
       return res.json().catch(()=>({ok:false,error:'Bad JSON response'}));

@@ -1,1379 +1,964 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ruhanix • Admin</title>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Website Builder</title>
   <style>
     :root{
-      --bg:#f3f4f6;
-      --card:#ffffff;
-      --border:#e6e7ee;
-      --text:#111827;
-      --muted:#6b7280;
-
-      --accent:#a67a1f;
-      --accent2:#d4a83a;
-      --glow1: rgba(37,99,235,.12);
-      --glow2: rgba(212,168,58,.14);
-      --topGlow1: rgba(37,99,235,.10);
-      --topGlow2: rgba(212,168,58,.12);
-      --sidebarGlow1: rgba(37,99,235,.12);
-      --sidebarGlow2: rgba(212,168,58,.14);
-      --surface: rgba(255,255,255,.92);
-      --surface-soft: rgba(255,255,255,.88);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.90);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
-
-      --shadow: 0 14px 36px rgba(0,0,0,0.10);
-      --shadow2: 0 10px 24px rgba(0,0,0,0.08);
-
-      --radius: 16px;
-
-      --blue:#2563eb;
-      --ring: rgba(79,70,229,0.18);
-
-      --topBase: 56px;
-
-      --sidebarW: 320px;
-      --t: 180ms;
-      --t2: 280ms;
+      --bg:#f6f7f9;
+      --nav:#e9f7df;
+      --navBorder:#d7efd0;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e5e7eb;
+      --shadow:0 18px 50px rgba(2,6,23,.10);
+      --radius:18px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --sidebarW: 280px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif;
-      color: var(--text);
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--text);
       overflow:hidden;
-      background:
-        radial-gradient(900px 520px at 10% 0%, var(--glow1), transparent 55%),
-        radial-gradient(900px 520px at 90% 10%, var(--glow2), transparent 55%),
-        var(--bg);
-    }
-
-    /* Topbar */
-    .topbar{
-      position:fixed; inset:0 0 auto 0;
-      height: var(--topBase);
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 0 14px;
-      border-bottom: 1px solid rgba(230,231,238,.95);
-      background:
-        radial-gradient(900px 160px at 20% 0%, var(--topGlow1), transparent 60%),
-        radial-gradient(900px 160px at 80% 0%, var(--topGlow2), transparent 60%),
-        linear-gradient(180deg, var(--surface-strong), var(--surface-alt));
-      backdrop-filter: blur(10px);
-      z-index: 60;
-    }
-    .top-left{display:flex; align-items:center; gap:10px; min-width: 220px;}
-    .title{display:flex; flex-direction:column; line-height:1.05; user-select:none;}
-    .title b{font-size:14px; letter-spacing:.2px}
-    .title span{font-size:12px; color:var(--muted)}
-
-    .top-mid{display:flex; align-items:center; gap:10px;}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 7px 10px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--surface-soft);
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 800;
-      user-select:none;
-      transition: border-color var(--t), box-shadow var(--t), transform var(--t);
-    }
-    .dot{width:8px;height:8px;border-radius:999px;background:rgba(107,114,128,.55)}
-    .dot.preview{background:rgba(37,99,235,.72)}
-    .dot.edit{background:rgba(79,70,229,.78)}
-
-    .top-right{display:flex; align-items:center; gap:10px;}
-
-    /* Buttons */
-    .btn{
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 0.37rem;
-      cursor:pointer;
-      font-weight: 850;
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t), opacity var(--t);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-
-    .btn.primary{
-      border-color: var(--accent-border-strong);
-      background: linear-gradient(180deg, var(--accent-soft), rgba(255,255,255,0));
-    }
-    .btn.blue{
-      border-color: var(--accent-border);
-      background: linear-gradient(180deg, var(--accent-soft), rgba(255,255,255,0));
-    }
-    .btn.ghost{background:transparent; box-shadow:none;}
-    .btn.small{padding:8px 10px; border-radius: 11px;}
-    .btn.danger{
-      border-color: rgba(239,68,68,.25);
-      background: rgba(239,68,68,.06);
-      color: rgba(185,28,28,.95);
-    }
-
-    .hamburger{width:44px;height:44px;padding:0;justify-content:center;}
-    .hamburger.hidden{opacity:0;pointer-events:none;transform: translateY(-1px) scale(.98);}
-    .icon{width:18px;height:18px;display:inline-block}
-
-    /* Shell */
-    .shell{
-      position:absolute;
-      top: var(--topBase);
-      left:0; right:0; bottom:0;
-      padding: 12px;
-      overflow:hidden;
-    }
-
-    /* Sidebar */
-    .sidebar{
-      position:fixed;
-      top: var(--topBase);
-      left:0;
-      bottom:0;
-      width: var(--sidebarW);
-      transform: translateX(-100%);
-      transition: transform var(--t2);
-      z-index: 50;
       display:flex;
       flex-direction:column;
-      border-right: 1px solid rgba(230,231,238,.95);
-      box-shadow: var(--shadow);
-      background:
-        radial-gradient(600px 420px at 18% 0%, var(--sidebarGlow1), transparent 58%),
-        radial-gradient(520px 380px at 82% 10%, var(--sidebarGlow2), transparent 58%),
-        linear-gradient(180deg, var(--surface-strong), var(--surface-glass));
-      backdrop-filter: blur(10px);
+      min-height:100vh;
     }
 
-    /* Theme presets (category-based) */
-    body[data-theme="legal"]{
-      --bg: #f6f5f2;
-      --card: #ffffff;
-      --border: rgba(148,163,184,.25);
-      --text: #1f2937;
-      --muted: #64748b;
-      --accent: #0f172a;
-      --accent2: #cbd5f5;
-      --blue: #475569;
-      --ring: rgba(71,85,105,0.18);
-      --glow1: rgba(148,163,184,.22);
-      --glow2: rgba(203,213,245,.26);
-      --topGlow1: rgba(148,163,184,.18);
-      --topGlow2: rgba(203,213,245,.24);
-      --sidebarGlow1: rgba(148,163,184,.16);
-      --sidebarGlow2: rgba(203,213,245,.22);
-      --surface: rgba(255,255,255,.94);
-      --surface-soft: rgba(255,255,255,.90);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.92);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
+    /* NAVBAR */
+    header.nav{
+      height:56px;
+      background:var(--nav);
+      border-bottom:1px solid var(--navBorder);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 12px;
+      gap:10px;
+      min-width:0;
+      flex:0 0 auto;
+      position:relative;
+      z-index:5;
     }
-    body[data-theme="fashion"]{
-      --bg: #f9f0ff;
-      --card: #ffffff;
-      --border: rgba(168,85,247,.22);
-      --text: #2b123f;
-      --muted: #6b4a7c;
-      --accent: #ec4899;
-      --accent2: #a855f7;
-      --blue: #db2777;
-      --ring: rgba(236,72,153,0.30);
-      --glow1: rgba(236,72,153,.16);
-      --glow2: rgba(168,85,247,.16);
-      --topGlow1: rgba(236,72,153,.14);
-      --topGlow2: rgba(168,85,247,.18);
-      --sidebarGlow1: rgba(236,72,153,.14);
-      --sidebarGlow2: rgba(168,85,247,.18);
-      --surface: rgba(255,255,255,.94);
-      --surface-soft: rgba(255,255,255,.90);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.92);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
-    }
-    body[data-theme="travel"]{
-      --bg: #f5f0ff;
-      --card: #ffffff;
-      --border: rgba(148,163,184,.22);
-      --text: #1f2937;
-      --muted: #64748b;
-      --accent: #c4b5fd;
-      --accent2: #fbcfe8;
-      --blue: #93c5fd;
-      --ring: rgba(147,197,253,0.25);
-      --glow1: rgba(196,181,253,.22);
-      --glow2: rgba(251,207,232,.24);
-      --topGlow1: rgba(196,181,253,.20);
-      --topGlow2: rgba(251,207,232,.20);
-      --sidebarGlow1: rgba(196,181,253,.20);
-      --sidebarGlow2: rgba(251,207,232,.22);
-      --surface: rgba(255,255,255,.94);
-      --surface-soft: rgba(255,255,255,.90);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.92);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
-    }
-    body[data-theme="tech"]{
-      --bg: #eef6ff;
-      --card: #ffffff;
-      --border: rgba(59,130,246,.18);
-      --text: #0f172a;
-      --muted: #5b6b80;
-      --accent: #2563eb;
-      --accent2: #93c5fd;
-      --blue: #1d4ed8;
-      --ring: rgba(37,99,235,0.20);
-      --glow1: rgba(37,99,235,.18);
-      --glow2: rgba(147,197,253,.22);
-      --topGlow1: rgba(37,99,235,.16);
-      --topGlow2: rgba(147,197,253,.20);
-      --sidebarGlow1: rgba(37,99,235,.16);
-      --sidebarGlow2: rgba(147,197,253,.20);
-      --surface: rgba(255,255,255,.94);
-      --surface-soft: rgba(255,255,255,.90);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.92);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
-    }
-    body[data-theme="default"]{
-      --bg:#f3f4f6;
-      --card:#ffffff;
-      --border:#e6e7ee;
-      --text:#111827;
-      --muted:#6b7280;
-      --accent:#a67a1f;
-      --accent2:#d4a83a;
-      --blue:#2563eb;
-      --ring: rgba(37,99,235,0.25);
-      --glow1: rgba(37,99,235,.12);
-      --glow2: rgba(212,168,58,.14);
-      --topGlow1: rgba(37,99,235,.10);
-      --topGlow2: rgba(212,168,58,.12);
-      --sidebarGlow1: rgba(37,99,235,.12);
-      --sidebarGlow2: rgba(212,168,58,.14);
-      --surface: rgba(255,255,255,.92);
-      --surface-soft: rgba(255,255,255,.88);
-      --surface-strong: rgba(255,255,255,.98);
-      --surface-glass: rgba(255,255,255,.90);
-      --surface-alt: rgba(255,255,255,.84);
-      --surface-bright: #ffffff;
 
+    .left{
+      display:flex; align-items:center; gap:10px;
+      min-width:0; flex:1 1 auto;
     }
-    .sidebar.open{transform: translateX(0);}
 
-    .side-head{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 12px 12px 10px;
-      border-bottom: 1px solid rgba(230,231,238,.95);
-    }
-    .side-head b{font-size:14px; letter-spacing:.2px;}
-    .close-x{
-      width:40px;height:40px;border-radius: 12px;
-      border:1px solid var(--border);
-      background: var(--surface);
+    .hamburger{
+      width:42px; height:36px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.65);
       cursor:pointer;
-      transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px;
+      display:grid;
+      place-items:center;
+      user-select:none;
+      flex:0 0 auto;
+    }
+    body.sidebar-open .hamburger{display:none;}
+    .hamburger:active{transform:translateY(1px)}
+
+    .closeBtn{
+      width:42px; height:36px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.75);
+      cursor:pointer;
+      display:none;
+      place-items:center;
+      user-select:none;
+      flex:0 0 auto;
+    }
+    body.sidebar-open .closeBtn{display:grid;}
+    .closeBtn:active{transform:translateY(1px)}
+
+    .titleBlock{min-width:0}
+    .title{
+      font-weight:900;
+      font-size:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      letter-spacing:-.2px;
+    }
+    .subtitle{
+      margin-top:2px;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .save{
+      height:36px;
+      padding:0 12px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,42,.12);
+      background:rgba(255,255,255,.75);
+      cursor:pointer;
+      font-weight:900;
+      text-transform:lowercase;
+      flex:0 0 auto;
+    }
+    .save:active{transform:translateY(1px)}
+
+    /* MAIN */
+    main{
+      flex:1 1 auto;
+      min-height:0;
+      min-width:0;
+      position:relative;
+      display:flex;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width:var(--sidebarW);
+      max-width:85vw;
+      height:100%;
+      background:var(--nav);
+      border-right:1px solid var(--navBorder);
+      box-shadow: 12px 0 30px rgba(2,6,23,.10);
+      transform: translateX(-100%);
+      transition: transform .18s ease;
+      flex:0 0 auto;
+      display:flex;
+      flex-direction:column;
+      padding:12px;
+      gap:10px;
+      position:absolute;
+      left:0; top:0;
+      z-index:4;
+    }
+    body.sidebar-open .sidebar{transform: translateX(0);}
+
+    .content{
+      flex:1 1 auto;
+      min-width:0;
+      min-height:0;
+      padding:12px;
+      transition: transform .18s ease;
+    }
+    body.sidebar-open .content{
+      transform: translateX(min(var(--sidebarW), 85vw));
+    }
+
+    .scrim{
+      position:absolute;
+      inset:0;
+      background:rgba(2,6,23,.06);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index:3;
+    }
+    body.sidebar-open .scrim{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    /* Sidebar UI */
+    .menuBtn{
+      width:100%;
+      border:1px solid rgba(2,6,23,.14);
+      background:rgba(255,255,255,.70);
+      border-radius:12px;
+      padding:10px;
+      text-align:left;
+      cursor:pointer;
+      font-weight:800;
+      font-size:12.5px;
+    }
+    .menuBtn:active{transform:translateY(1px)}
+
+    .sectionRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:4px;
+    }
+    .sectionTitle{
+      font-weight:900;
+      font-size:12px;
+    }
+
+    .addBtn{
+      height:28px;
+      width:28px;
+      border-radius:10px;
+      border:1px solid rgba(2,6,23,.14);
+      background:rgba(255,255,255,.70);
+      cursor:pointer;
+      font-weight:900;
+      line-height:1;
+      display:grid;
+      place-items:center;
       user-select:none;
     }
+    .addBtn:active{transform:translateY(1px)}
 
+    .pageList{
+      border:1px solid rgba(2,6,23,.14);
+      border-radius:12px;
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      background:rgba(255,255,255,.55);
+      overflow:auto;
+      max-height: 52vh;
+    }
+    .pageLink{
+      border:none;
+      background:transparent;
+      text-align:left;
+      padding:6px 8px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:12.5px;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      min-width:0;
+    }
+    .pageLink:hover{background:rgba(255,255,255,.70)}
+    .pageLink.active{
+      background:#0f172a;
+      color:#fff;
+    }
+    .pageName{
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      flex:1 1 auto;
+    }
 
-    .side-body{
-      padding: 12px;
+    .spacer{flex:1}
+
+    .footer{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      padding-top:10px;
+      border-top:1px solid var(--navBorder);
+      font-size:12.5px;
+      color:#111827;
+    }
+
+    .profileBtn{
+      width:100%;
+      border:1px solid rgba(2,6,23,.14);
+      background:rgba(255,255,255,.70);
+      border-radius:12px;
+      padding:10px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      text-align:left;
+    }
+    .profileBtn:active{transform:translateY(1px)}
+    .dot{
+      width:18px;height:18px;border-radius:50%;
+      border:1px solid rgba(2,6,23,.22);
+      background:#fff;
+      flex:0 0 auto;
+    }
+
+    .logout{
+      border:none;
+      background:transparent;
+      text-align:left;
+      padding:6px 0;
+      cursor:pointer;
+      color:#334155;
+      font-size:12.5px;
+      font-weight:800;
+    }
+
+    /* PREVIEW iframe shell */
+    .frameShell{
+      width:100%;
+      height:100%;
+      background:#fff;
+      border:1px solid rgba(2,6,23,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      min-height:0;
+    }
+    .frameTop{
+      flex:0 0 auto;
+      padding:10px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:linear-gradient(180deg,#fff,#fafafa);
+      min-width:0;
+    }
+    .chip{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:#334155;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:55%;
+    }
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:45%;
+      text-align:right;
+    }
+    iframe{
+      flex:1 1 auto;
+      min-width:0;
+      min-height:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+
+    /* =========================
+       "SCREEN" EDIT VIEW (NO OVERLAY)
+       ========================= */
+    .view{display:none; height:100%}
+    .view.active{display:block}
+
+    .editorShell{
+      width:100%;
+      height:100%;
+      background:#fff;
+      border:1px solid rgba(2,6,23,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      min-height:0;
+    }
+    .editorTop{
+      flex:0 0 auto;
+      padding:10px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:linear-gradient(180deg,#fff,#fafafa);
+      min-width:0;
+    }
+    .editorTitle{
+      font-weight:950;
+      letter-spacing:-.2px;
+      font-size:13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .backBtn{
+      height:34px;
+      padding:0 10px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight:950;
+      font-size:12px;
+      flex:0 0 auto;
+    }
+    .backBtn:active{transform:translateY(1px)}
+
+    .editorBody{
+      padding:12px;
       overflow:auto;
       display:flex;
       flex-direction:column;
-      gap:12px;
-    }
-    .section-title{
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 950;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-    .side-item{
-      width:100%;
-      text-align:left;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor:pointer;
-      transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
       gap:10px;
-      user-select:none;
     }
 
-      background:var(--surface-bright);
-    }
-    .side-item .label{display:flex; flex-direction:column; gap:3px;}
-    .side-item .label b{font-size:13px;}
-    .side-item .label span{font-size:12px; color:var(--muted);}
-    .side-item .arrow{color:var(--muted); font-weight: 900;}
+    .panel{display:none}
+    .panel.active{display:block}
 
-    .side-card{
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 14px;
-      padding: 12px;
-      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
-    }
-    .side-card:hover{transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--accent-border);}
-    .hint{margin:0;color:var(--muted);font-size:12px;line-height:1.45;}
-
-    /* Manage pages box */
-    .pages-box{
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 14px;
-      padding: 12px;
+    .field{
       display:flex;
       flex-direction:column;
-      gap:10px;
-    }
-
-    /* Backdrop */
-    .backdrop{
-      position:fixed;
-      inset: var(--topBase) 0 0 0;
-      background: rgba(17,24,39,.24);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity var(--t2);
-      z-index: 45;
-    }
-    .backdrop.show{opacity:1; pointer-events:auto;}
-
-    /* Main views */
-    .main{width:100%;height:100%;display:flex;}
-    .preview-wrap,.edit-wrap{width:100%;height:100%;}
-    .preview-wrap{
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      background: var(--surface);
-      display:none;
-    }
-    .edit-wrap{display:none; justify-content:center; align-items:stretch;}
-
-    .view-preview .preview-wrap{display:block;}
-    .view-preview .edit-wrap{display:none;}
-    .view-edit .preview-wrap{display:none;}
-    .view-edit .edit-wrap{display:flex;}
-
-    iframe{width:100%;height:100%;border:0;background:#fff;}
-
-    /* Editor panel */
-    .panel{
-      width: min(980px, 100%);
-      height: 100%;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      background: var(--surface);
-      display:flex;
-      flex-direction:column;
-    }
-    .panel-head{
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(230,231,238,.95);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      background:
-        radial-gradient(640px 240px at 20% 0%, var(--topGlow1), transparent 60%),
-        radial-gradient(640px 240px at 80% 0%, var(--topGlow2), transparent 60%),
-        var(--surface-strong);
-    }
-    .ph-title{display:flex;flex-direction:column;line-height:1.1;}
-    .ph-title b{font-size:14px;letter-spacing:.2px;}
-    .ph-title span{font-size:12px;color:var(--muted);}
-    .panel-body{padding:14px;overflow:auto;}
-    .panel-actions{
-      padding: 12px 14px;
-      border-top: 1px solid rgba(230,231,238,.95);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      background: var(--surface-alt);
-    }
-    .left-note{font-size:12px;color:var(--muted);font-weight:850;}
-    .actions-right{display:flex;gap:10px;}
-
-    /* Form */
-    label{
-      display:block;
-      font-size:12px;
-      color: var(--muted);
-      margin: 10px 0 6px;
-      font-weight: 900;
-    }
-    input[type="text"], input[type="number"], select, textarea{
-      width:100%;
-      border: 1px solid var(--border);
-      background: var(--surface-bright);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 10px 10px;
-      outline:none;
-      font-size:14px;
-      transition: box-shadow var(--t), border-color var(--t);
-    }
-    textarea{min-height: 150px; resize: vertical;}
-    input:focus, select:focus, textarea:focus{
-      border-color: var(--accent-border-strong);
-      box-shadow: 0 0 0 4px var(--ring);
-    }
-    input[type="color"]{
-      width:100%;
-      height:42px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      gap:6px;
+      border:1px solid rgba(2,6,23,.10);
+      border-radius:14px;
+      padding:10px;
       background:#fff;
-      padding: 4px;
-      cursor:pointer;
     }
-    .grid2{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:12px;
+    .label{
+      font-size:12px;
+      color:#334155;
+      font-weight:900;
     }
-    .mini{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35;}
-    .toggle{
+    .input, .select, .textarea{
+      width:100%;
+      border:1px solid rgba(2,6,23,.12);
+      border-radius:12px;
+      padding:10px 10px;
+      font-size:13px;
+      outline:none;
+    }
+    .textarea{min-height:88px; resize:vertical;}
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .checkRow{
       display:flex; align-items:center; gap:8px;
-      margin-top: 8px;
-      font-size: 13px;
-      color: var(--muted);
-      user-select:none;
-      font-weight: 800;
-    }
-    .toggle input{width:18px;height:18px;}
-
-    /* Toast */
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 16px;
-      transform: translateX(-50%) translateY(10px);
-      background: rgba(255,255,255,.95);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 999px;
-      box-shadow: var(--shadow2);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity var(--t2), transform var(--t2);
-      z-index: 99;
-      font-size: 13px;
-      font-weight: 950;
-      max-width: min(92vw, 720px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .toast.show{opacity:1; transform: translateX(-50%) translateY(0px);}
-
-    @media (max-width: 780px){
-      :root{--sidebarW: 86vw;}
-      .grid2{grid-template-columns: 1fr;}
-      .top-mid{display:none;}
+      font-size:13px; color:#0f172a; font-weight:900;
     }
 
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important;}
+    .btnRow{
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      padding-top:4px;
+    }
+    .btn{
+      height:38px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.14);
+      background:#fff;
+      cursor:pointer;
+      padding:0 12px;
+      font-weight:950;
+      font-size:12.5px;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      background:#0f172a;
+      color:#fff;
+      border-color:#0f172a;
+    }
+
+    .tiny{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    .logoPreviewWrap{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .logoPreview{
+      width:52px;height:52px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,.12);
+      background:#fff;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logoPreview img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:#fff;
     }
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="top-left">
-      <button id="btnHamburger" class="btn hamburger" type="button" title="Open sidebar" aria-label="Open sidebar">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
+  <header class="nav">
+    <div class="left">
+      <button class="hamburger" id="openSidebarBtn" aria-label="Open sidebar">☰</button>
+      <button class="closeBtn" id="closeSidebarBtn" aria-label="Close sidebar">✕</button>
 
-      <div class="title">
-        <b id="topTitle">Website Manager</b>
-        <span id="topSub">Loading template…</span>
+      <div class="titleBlock">
+        <div class="title" id="topTitle">Website Builder</div>
+        <div class="subtitle" id="topSubtitle">Template Preview</div>
       </div>
     </div>
 
-    <div class="top-mid">
-      <div class="pill" id="modePill">
-        <span id="modeDot" class="dot preview"></span>
-        <span id="modeText">Preview</span>
+    <button class="save" id="saveBtn">save</button>
+  </header>
+
+  <main>
+    <aside class="sidebar" id="sidebar" aria-label="Builder menu">
+      <button class="menuBtn" data-panel="logo" type="button">Edit logo</button>
+      <button class="menuBtn" data-panel="brand" type="button">Brand Detail</button>
+      <button class="menuBtn" data-panel="font" type="button">Edit Font</button>
+
+      <div class="sectionRow">
+        <div class="sectionTitle">Select Page</div>
+        <button class="addBtn" id="addPageBtn" type="button" aria-label="Add page">+</button>
       </div>
-      <div class="pill" id="savePill" title="Draft status">
-        <span class="dot" id="saveDot" style="background:rgba(107,114,128,.55)"></span>
-        <span id="saveText">Not saved</span>
+
+      <div class="pageList" id="pageList"></div>
+
+      <div class="spacer"></div>
+
+      <div class="footer">
+        <button class="profileBtn" id="profileBtn" type="button">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Profile</span>
+        </button>
+        <button class="logout" id="logoutBtn" type="button">logout</button>
       </div>
-    </div>
+    </aside>
 
-    <div class="top-right">
-      <button id="btnBackPreview" class="btn blue" type="button" style="display:none;" title="Back to preview">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Preview
-      </button>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
 
-      <button id="btnSaveDraft" class="btn primary" type="button" title="Save draft">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 3h10l3 3v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M8 3v7h8V3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M8 21v-7h8v7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-        Save Draft
-      </button>
-    </div>
-  </div>
-
-  <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar" aria-label="Sidebar">
-    <div class="side-head">
-      <b>Website Controls</b>
-      <button id="btnCloseSidebar" class="close-x" type="button" aria-label="Close sidebar">×</button>
-    </div>
-
-    <div class="side-body">
-      <div class="section-title">Brand</div>
-      <button class="side-item" type="button" data-mode="logo">
-        <div class="label">
-          <b>Edit Logo</b>
-          <span>Image + brand name</span>
+    <section class="content">
+      <div class="view active" id="previewView">
+        <div class="frameShell">
+          <div class="frameTop">
+            <span class="chip" id="pageChip">Homepage</span>
+            <span class="hint" id="statusText">Ready</span>
+          </div>
+          <iframe id="previewFrame" src="about:blank" title="Template Preview"></iframe>
         </div>
-        <span class="arrow">›</span>
-      </button>
-
-      <div class="section-title">Style & Layout</div>
-      <button class="side-item" type="button" data-mode="background">
-        <div class="label">
-          <b>Edit Background</b>
-          <span>Color or image</span>
-        </div>
-        <span class="arrow">›</span>
-      </button>
-
-      <button class="side-item" type="button" data-mode="font">
-        <div class="label">
-          <b>Edit Font</b>
-          <span>Family, size, color</span>
-        </div>
-        <span class="arrow">›</span>
-      </button>
-
-      <div class="section-title">Pages</div>
-      <div class="pages-box">
-        <label style="margin-top:0;">Select Page</label>
-        <select id="sidebarPageSelect"></select>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button id="btnEditPage" class="btn small" type="button">Edit Page</button>
-          <button id="btnAddPage" class="btn small" type="button">Add Page</button>
-        </div>
-
-        <p class="hint">Select a page to preview it. Use Edit Page to adjust headings, text, and calls to action.</p>
       </div>
-    </div>
-  </aside>
 
-  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
-
-  <!-- Main -->
-  <div class="shell">
-    <div id="main" class="main view-preview">
-      <!-- Preview -->
-      <section class="preview-wrap" aria-label="Preview window">
-        <iframe id="preview" title="Template preview"></iframe>
-      </section>
-
-      <!-- Editor -->
-      <section class="edit-wrap" aria-label="Edit window">
-        <div class="panel">
-          <div class="panel-head">
-            <div class="ph-title">
-              <b id="panelTitle">Edit</b>
-              <span id="panelSubtitle">Change settings then update</span>
-            </div>
-            <button id="btnResetForm" class="btn ghost" type="button" title="Reset this form">Reset</button>
+      <div class="view" id="editorView">
+        <div class="editorShell">
+          <div class="editorTop">
+            <div class="editorTitle" id="editorTitle">Edit</div>
+            <button class="backBtn" id="backToPreviewBtn" type="button">Back</button>
           </div>
 
-          <div id="panelBody" class="panel-body"></div>
+          <div class="editorBody">
+            <form class="panel" id="panelLogo">
+              <div class="field">
+                <div class="label">Upload Logo</div>
+                <div class="logoPreviewWrap">
+                  <div class="logoPreview">
+                    <img id="logoPreviewImg" alt="Logo preview" style="display:none" />
+                    <div id="logoPreviewFallback" class="tiny">No logo</div>
+                  </div>
+                  <div style="flex:1">
+                    <input class="input" id="logoFile" type="file" accept="image/*" />
+                    <div class="tiny" style="margin-top:6px;">Upload an image (PNG/JPG/SVG).</div>
+                  </div>
+                </div>
 
-          <div class="panel-actions">
-            <div class="left-note" id="editHint">Fill fields then press Update.</div>
-            <div class="actions-right">
-              <button id="btnCancel" class="btn" type="button">Cancel</button>
-              <button id="btnUpdate" class="btn primary" type="button">Update</button>
-            </div>
+                <div class="row" style="margin-top:8px;">
+                  <button class="btn" id="removeLogoBtn" type="button">Remove</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="label">Brand Name</div>
+                <input class="input" id="brandNameInput" type="text" placeholder="e.g. Ruhanix Legal" />
+              </div>
+
+              <div class="field">
+                <div class="label">Need:</div>
+                <div class="row">
+                  <label class="checkRow">
+                    <input id="needLogoChk" type="checkbox" />
+                    Logo
+                  </label>
+                  <label class="checkRow">
+                    <input id="needNameChk" type="checkbox" />
+                    Name
+                  </label>
+                </div>
+              </div>
+
+              <div class="btnRow">
+                <button class="btn primary" type="submit">Update</button>
+              </div>
+            </form>
+
+            <form class="panel" id="panelBrand">
+              <div class="field">
+                <div class="label">Name</div>
+                <input class="input" id="brandDetailName" type="text" placeholder="Brand name" />
+              </div>
+
+              <div class="field">
+                <div class="label">Tagline</div>
+                <input class="input" id="brandDetailTagline" type="text" placeholder="Your tagline" />
+              </div>
+
+              <div class="field">
+                <div class="label">Contact</div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <input class="input" id="brandEmail" type="email" placeholder="Email" />
+                  <input class="input" id="brandPhone" type="tel" placeholder="Phone" />
+                  <input class="input" id="brandTel" type="text" placeholder="Tel" />
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="label">Address</div>
+                <textarea class="textarea" id="brandAddress" placeholder="Address"></textarea>
+              </div>
+
+              <div class="btnRow">
+                <button class="btn primary" type="submit">Update</button>
+              </div>
+            </form>
+
+            <form class="panel" id="panelFont">
+              <div class="field">
+                <div class="label">Primary Font</div>
+                <select class="select" id="primaryFontSelect">
+                  <option value="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">System (Default)</option>
+                  <option value="Arial, Helvetica, sans-serif">Arial</option>
+                  <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                  <option value="Trebuchet MS, Trebuchet, sans-serif">Trebuchet</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="Times New Roman, Times, serif">Times New Roman</option>
+                  <option value="Courier New, Courier, monospace">Courier New</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <div class="label">Secondary Font</div>
+                <select class="select" id="secondaryFontSelect">
+                  <option value="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">System (Default)</option>
+                  <option value="Arial, Helvetica, sans-serif">Arial</option>
+                  <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                  <option value="Trebuchet MS, Trebuchet, sans-serif">Trebuchet</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="Times New Roman, Times, serif">Times New Roman</option>
+                  <option value="Courier New, Courier, monospace">Courier New</option>
+                </select>
+              </div>
+
+              <div class="btnRow">
+                <button class="btn primary" type="submit">Update</button>
+              </div>
+            </form>
+
           </div>
         </div>
-      </section>
-    </div>
-  </div>
-
-  <div id="toast" class="toast">Saved</div>
+      </div>
+    </section>
+  </main>
 
   <script>
-    /***********************
-     * Admin (REAL template)
-     * Requires backend:
-     * - api/current-template.php
-     * - api/template-pages.php
-     * - api/save-draft.php
-     * - template-view.php
-     * - admin-bridge.js (inside iframe)
-     ***********************/
+    const statusText = document.getElementById('statusText');
+    const pageChip = document.getElementById('pageChip');
+    const pageList = document.getElementById('pageList');
+    const previewFrame = document.getElementById('previewFrame');
 
-    // Draft JSON structure saved to DB
-    const defaultState = () => ({
-      version: 1,
-      logo: {
-        showImage: true,
-        showText: true,
-        brandName: "RUHANIX",
-        align: "left",
-        textColor: "#111827",
-        textSize: 18,
-        imgSize: 34,
-        gap: 10,
-        imgDataUrl: ""
-      },
-      background: {
-        type: "color",           // color | image
-        color: "#f3f4f6",
-        imageDataUrl: "",
-        size: "cover",
-        position: "center",
-        overlayColor: "#000000",
-        overlayOpacity: 0
-      },
-      font: {
-        family: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-        baseSize: 16,
-        headingSize: 30,
-        lineHeight: 1.6,
-        textColor: "#111827",
-        buttonRadius: 14
-      },
-      pages: {
-        currentFile: "",         // selected html file
-        overrides: {             // per page simple overrides (works best if template has matching elements)
-          // "index.html": { docTitle:"", h1:"", intro:"", cta:"" }
-        }
-      }
-    });
+    const previewView = document.getElementById('previewView');
+    const editorView = document.getElementById('editorView');
+    const editorTitle = document.getElementById('editorTitle');
+    const backToPreviewBtn = document.getElementById('backToPreviewBtn');
 
-    let state = defaultState();
-    let currentTemplate = null;  // from DB
-    let pagesList = [];
-    let mode = null;             // logo | background | font | page_edit | page_add
-    let iframeReady = false;
-    let pageDataCache = {};
+    const topTitle = document.getElementById('topTitle');
+    const topSubtitle = document.getElementById('topSubtitle');
 
-    // Elements
-    const main = document.getElementById("main");
-    const iframe = document.getElementById("preview");
+    const panels = {
+      logo: document.getElementById('panelLogo'),
+      brand: document.getElementById('panelBrand'),
+      font: document.getElementById('panelFont'),
+    };
 
-    const topTitle = document.getElementById("topTitle");
-    const topSub = document.getElementById("topSub");
+    const app = {
+      slug: '',
+      pages: [],
+      entry: 'index.html',
+      currentPage: 'index.html'
+    };
 
-    const sidebar = document.getElementById("sidebar");
-    const backdrop = document.getElementById("backdrop");
-    const btnHamburger = document.getElementById("btnHamburger");
-    const btnCloseSidebar = document.getElementById("btnCloseSidebar");
-
-    const btnSaveDraft = document.getElementById("btnSaveDraft");
-    const btnBackPreview = document.getElementById("btnBackPreview");
-
-    const modeDot = document.getElementById("modeDot");
-    const modeText = document.getElementById("modeText");
-
-    const saveDot = document.getElementById("saveDot");
-    const saveText = document.getElementById("saveText");
-
-    const sidebarPageSelect = document.getElementById("sidebarPageSelect");
-    const btnEditPage = document.getElementById("btnEditPage");
-    const btnAddPage = document.getElementById("btnAddPage");
-
-    const panelTitle = document.getElementById("panelTitle");
-    const panelSubtitle = document.getElementById("panelSubtitle");
-    const panelBody = document.getElementById("panelBody");
-    const editHint = document.getElementById("editHint");
-    const btnResetForm = document.getElementById("btnResetForm");
-    const btnCancel = document.getElementById("btnCancel");
-    const btnUpdate = document.getElementById("btnUpdate");
-
-    const toast = document.getElementById("toast");
-
-    // Helpers
-    function escHtml(str){
-      return String(str ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-    }
-
-    // ✅ NEW: Friendly page label (keeps value as filename)
-    function prettyPageName(file){
-      const f = String(file ?? "");
-      const last = f.split("/").pop() || f;
-      const low = last.toLowerCase();
-
-      if(low === "index.html" || low === "index.htm") return "Homepage";
-
-      const base = last.replace(/\.(html?|php)$/i, "");
-      const words = base.replace(/[-_]+/g, " ").trim().split(/\s+/).filter(Boolean);
-      if(!words.length) return last;
-
-      const acronyms = new Set(["faq","api","ui","ux","hr","qa","crm"]);
-      return words.map(w => {
-        const lw = w.toLowerCase();
-        if(acronyms.has(lw)) return lw.toUpperCase();
-        return lw.charAt(0).toUpperCase() + lw.slice(1);
-      }).join(" ");
-    }
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(()=>toast.classList.remove("show"), 1700);
-    }
-    function safeNumber(v, fallback){
-      const n = Number(v);
-      return Number.isFinite(n) ? n : fallback;
-    }
-    async function fileToDataUrl(file){
-      if(!file) return "";
-      return new Promise((resolve,reject)=>{
-        const r = new FileReader();
-        r.onload = ()=>resolve(String(r.result||""));
-        r.onerror = reject;
-        r.readAsDataURL(file);
-      });
-    }
-
-    function setSavedStatus(saved){
-      if(saved){
-        saveDot.style.background = "rgba(37,99,235,.70)";
-        saveText.textContent = "Saved";
-      }else{
-        saveDot.style.background = "rgba(107,114,128,.55)";
-        saveText.textContent = "Not saved";
+    function setStatus(msg, ms=900){
+      statusText.textContent = msg;
+      if(ms){
+        setTimeout(()=>{
+          statusText.textContent = 'Ready';
+        }, ms);
       }
     }
 
-    function setModePill(view){
-      if(view === "preview"){
-        modeDot.className = "dot preview";
-        modeText.textContent = "Preview";
-      }else{
-        modeDot.className = "dot edit";
-        modeText.textContent = "Editing";
-      }
+    function prettyName(file){
+      if(!file) return 'Page';
+      const base = file.split('/').pop() || file;
+      const name = base.replace(/\.(html?|php)$/i,'');
+      if(name.toLowerCase()==='index') return 'Homepage';
+      return name.replace(/[-_]+/g,' ').replace(/\b\w/g, c => c.toUpperCase());
     }
 
-    function setView(view){
-      if(view === "preview"){
-        main.classList.add("view-preview");
-        main.classList.remove("view-edit");
-        btnBackPreview.style.display = "none";
-        setModePill("preview");
-      }else{
-        main.classList.add("view-edit");
-        main.classList.remove("view-preview");
-        btnBackPreview.style.display = "none";
-        setModePill("edit");
-      }
+    function getSelectedTemplateId(){
+      const params = new URLSearchParams(window.location.search);
+      const urlTid = params.get('tid');
+      if(urlTid) return urlTid;
+      try{
+        const stored = JSON.parse(localStorage.getItem('rc_selected_template') || '{}');
+        if(stored.id) return stored.id;
+      }catch(e){}
+      return localStorage.getItem('rc_selected_template_id') || '';
     }
 
-    function setAdminTheme(category){
-      const raw = String(category || "").toLowerCase();
-      let theme = "default";
-      if(raw.includes("legal")) theme = "legal";
-      if(raw.includes("fashion")) theme = "fashion";
-      if(raw.includes("travel")) theme = "travel";
-      if(raw.includes("startup") || raw.includes("tech")) theme = "tech";
-      document.body.setAttribute("data-theme", theme);
+    function buildApiUrl(path){
+      const url = new URL(path, window.location.href);
+      const tid = getSelectedTemplateId();
+      if(tid) url.searchParams.set('tid', tid);
+      return url.toString();
     }
 
-    function requestPageData(){
-      if(!iframeReady) return;
-      iframe.contentWindow.postMessage({ type: "RUHANIX_PAGE_DATA_REQUEST" }, window.location.origin);
-    }
-
-    window.addEventListener("message", (ev)=>{
-      if(ev.origin !== window.location.origin) return;
-      const msg = ev.data || {};
-      if(msg.type === "RUHANIX_PAGE_DATA"){
-        const file = state.pages.currentFile || "";
-        if(file){
-          pageDataCache[file] = msg.payload || {};
-          if(mode === "page_edit"){
-            renderForm();
-          }
-        }
-      }
-    });
-
-    // Sidebar open/close
-    function openSidebar(){
-      sidebar.classList.add("open");
-      backdrop.classList.add("show");
-      btnHamburger.classList.add("hidden");
-    }
-    function closeSidebar(){
-      sidebar.classList.remove("open");
-      backdrop.classList.remove("show");
-      btnHamburger.classList.remove("hidden");
-    }
-
-    btnHamburger.addEventListener("click", openSidebar);
-    btnCloseSidebar.addEventListener("click", closeSidebar);
-    backdrop.addEventListener("click", closeSidebar);
-
-    // keyboard shortcuts
-    document.addEventListener("keydown",(e)=>{
-      const isMac = /mac/i.test(navigator.platform || "");
-      if((isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === "s"){
-        e.preventDefault();
-        saveDraftToDB();
-      }
-      if(e.key === "Escape" && sidebar.classList.contains("open")) closeSidebar();
-    });
-
-    // highlight sidebar option
-    function setSidebarActive(key){
-      document.querySelectorAll(".side-item").forEach(b=>{
-        b.classList.toggle("active", b.getAttribute("data-mode") === key);
-      });
-    }
-
-    // Send draft state into iframe template
-    function applyToIframe(){
-      if(!iframeReady) return;
-      const pageFile = state.pages.currentFile || "";
-      const pageOverrides = state.pages.overrides?.[pageFile] || null;
-
-      iframe.contentWindow.postMessage({
-        type: "RUHANIX_APPLY",
-        payload: {
-          logo: state.logo,
-          background: state.background,
-          font: state.font,
-          page: { file: pageFile, overrides: pageOverrides }
-        }
-      }, window.location.origin);
-    }
-
-    // Load template page into iframe
-    function loadPreviewPage(file){
-      if(!currentTemplate) return;
-      iframeReady = false;
-
-      // remember page file
-      state.pages.currentFile = file;
-
-      const url = `template-view.php?slug=${encodeURIComponent(currentTemplate.slug)}&page=${encodeURIComponent(file)}&v=${Date.now()}`;
-      iframe.src = url;
-
-      iframe.addEventListener("load", () => {
-        iframeReady = true;
-        applyToIframe();
-        requestPageData();
-      }, { once:true });
-    }
-
-    // API calls
-    async function apiGet(url){
-      const res = await fetch(url, { credentials: "include" });
+    async function apiGet(path){
+      const res = await fetch(buildApiUrl(path), { credentials:'include' });
       return res.json();
     }
-    async function apiPost(url, body){
-      const res = await fetch(url, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type":"application/json" },
+
+    async function apiPost(path, body){
+      const res = await fetch(buildApiUrl(path), {
+        method:'POST',
+        credentials:'include',
+        headers:{'Content-Type':'application/json'},
         body: JSON.stringify(body)
       });
-      return res.json().catch(()=>({ok:false,error:"Bad JSON response"}));
+      return res.json().catch(()=>({ok:false,error:'Bad JSON response'}));
     }
 
-    async function saveDraftToDB(){
-      const result = await apiPost("api/save-draft.php", { draft: state });
-      if(result.ok){
-        setSavedStatus(true);
-        showToast("Draft saved ✅");
-      }else{
-        setSavedStatus(false);
-        showToast(result.error || "Save failed");
-      }
+    function openSidebar(){
+      document.body.classList.add('sidebar-open');
+      setStatus('Menu open', 0);
+    }
+    function closeSidebar(){
+      document.body.classList.remove('sidebar-open');
+      setStatus('Ready', 0);
     }
 
-    btnSaveDraft.addEventListener("click", saveDraftToDB);
+    document.getElementById('openSidebarBtn').addEventListener('click', openSidebar);
+    document.getElementById('closeSidebarBtn').addEventListener('click', closeSidebar);
+    document.getElementById('scrim').addEventListener('click', closeSidebar);
 
-    // Back buttons
-    btnBackPreview.addEventListener("click", ()=> setView("preview"));
-    btnCancel.addEventListener("click", ()=> setView("preview"));
+    function showPreview(){
+      editorView.classList.remove('active');
+      previewView.classList.add('active');
+      setStatus('Ready', 0);
+    }
 
-    // Render forms
-    function openEditor(nextMode){
-      mode = nextMode;
+    function showEditor(panelKey){
       closeSidebar();
-      if(mode === "page_edit"){
-        requestPageData();
-      }
-      renderForm();
-      setView("edit");
+      previewView.classList.remove('active');
+      editorView.classList.add('active');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[panelKey]?.classList.add('active');
+      if(panelKey === 'logo') editorTitle.textContent = 'Edit Logo';
+      if(panelKey === 'brand') editorTitle.textContent = 'Brand Detail';
+      if(panelKey === 'font') editorTitle.textContent = 'Edit Font';
+      setStatus('Editing...', 0);
     }
 
-    document.querySelectorAll(".side-item").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const m = btn.getAttribute("data-mode");
-        setSidebarActive(m);
-        openEditor(m);
+    backToPreviewBtn.addEventListener('click', showPreview);
+
+    document.getElementById('sidebar').addEventListener('click', (e)=>{
+      const btn = e.target.closest('.menuBtn');
+      if(!btn) return;
+      const panel = btn.dataset.panel;
+      if(panel && panels[panel]) showEditor(panel);
+    });
+
+    function renderPages(activeFile){
+      pageList.innerHTML = '';
+      app.pages.forEach(file => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pageLink';
+        btn.dataset.page = file;
+        btn.innerHTML = `<span class="pageName">${prettyName(file)}</span>`;
+        if(file === activeFile) btn.classList.add('active');
+        pageList.appendChild(btn);
       });
-    });
-
-    btnEditPage.addEventListener("click", ()=> openEditor("page_edit"));
-    btnAddPage.addEventListener("click", ()=> openEditor("page_add"));
-
-    btnResetForm.addEventListener("click", ()=>{
-      renderForm();
-      showToast("Form reset 🔁");
-    });
-
-    function renderForm(){
-      if(mode === "logo"){
-        panelTitle.textContent = "Edit Logo";
-        panelSubtitle.textContent = "Brand image + brand name";
-        editHint.textContent = "Upload/change then Update.";
-
-        panelBody.innerHTML = `
-          <div class="grid2">
-            <div>
-              <label>Upload Logo</label>
-              <input id="logoFile" type="file" accept="image/*" />
-              <div class="toggle">
-                <input id="logoShowImage" type="checkbox" ${state.logo.showImage ? "checked":""} />
-                <span>Show image</span>
-              </div>
-
-              <label>Image Size (px)</label>
-              <input id="logoImgSize" type="number" min="16" max="140" value="${state.logo.imgSize}" />
-
-              <label>Gap (px)</label>
-              <input id="logoGap" type="number" min="0" max="40" value="${state.logo.gap}" />
-              <div class="mini">If you don’t upload, old logo stays.</div>
-            </div>
-
-            <div>
-              <div class="toggle">
-                <input id="logoShowText" type="checkbox" ${state.logo.showText ? "checked":""} />
-                <span>Show brand name</span>
-              </div>
-
-              <label>Brand Name</label>
-              <input id="brandName" type="text" value="${escHtml(state.logo.brandName)}" />
-
-              <label>Text Color</label>
-              <input id="logoTextColor" type="color" value="${state.logo.textColor}" />
-
-              <label>Text Size (px)</label>
-              <input id="logoTextSize" type="number" min="10" max="60" value="${state.logo.textSize}" />
-
-              <label>Alignment</label>
-              <select id="logoAlign">
-                <option value="left" ${state.logo.align==="left"?"selected":""}>Left</option>
-                <option value="center" ${state.logo.align==="center"?"selected":""}>Center</option>
-                <option value="right" ${state.logo.align==="right"?"selected":""}>Right</option>
-              </select>
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      if(mode === "background"){
-        panelTitle.textContent = "Edit Background";
-        panelSubtitle.textContent = "Color or image background";
-        editHint.textContent = "Pick type and set fields.";
-
-        panelBody.innerHTML = `
-          <label>Type</label>
-          <select id="bgType">
-            <option value="color" ${state.background.type==="color"?"selected":""}>Color</option>
-            <option value="image" ${state.background.type==="image"?"selected":""}>Image</option>
-          </select>
-
-          <div class="grid2">
-            <div>
-              <label>Background Color</label>
-              <input id="bgColor" type="color" value="${state.background.color}" />
-            </div>
-            <div>
-              <label>Upload Background Image</label>
-              <input id="bgFile" type="file" accept="image/*" />
-            </div>
-          </div>
-
-          <div class="grid2">
-            <div>
-              <label>Image Size</label>
-              <select id="bgSize">
-                <option value="cover" ${state.background.size==="cover"?"selected":""}>Cover</option>
-                <option value="contain" ${state.background.size==="contain"?"selected":""}>Contain</option>
-                <option value="auto" ${state.background.size==="auto"?"selected":""}>Auto</option>
-              </select>
-            </div>
-            <div>
-              <label>Image Position</label>
-              <select id="bgPos">
-                <option value="center" ${state.background.position==="center"?"selected":""}>Center</option>
-                <option value="top" ${state.background.position==="top"?"selected":""}>Top</option>
-                <option value="bottom" ${state.background.position==="bottom"?"selected":""}>Bottom</option>
-                <option value="left" ${state.background.position==="left"?"selected":""}>Left</option>
-                <option value="right" ${state.background.position==="right"?"selected":""}>Right</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid2">
-            <div>
-              <label>Overlay Color</label>
-              <input id="bgOverlayColor" type="color" value="${state.background.overlayColor}" />
-            </div>
-            <div>
-              <label>Overlay Opacity (0 to 1)</label>
-              <input id="bgOverlayOpacity" type="number" step="0.05" min="0" max="1" value="${state.background.overlayOpacity}" />
-            </div>
-          </div>
-
-          <div class="mini">Overlay is optional. Use 0.10 to 0.35 for best results.</div>
-        `;
-        return;
-      }
-
-      if(mode === "font"){
-        panelTitle.textContent = "Edit Font";
-        panelSubtitle.textContent = "Font, sizes and color";
-        editHint.textContent = "Keep base size 15–17 for best UX.";
-
-        panelBody.innerHTML = `
-          <label>Font</label>
-          <select id="fontFamily">
-            <option value="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" ${state.font.family.indexOf("system-ui")===0?"selected":""}>System (Default)</option>
-            <option value="Arial, Helvetica, sans-serif" ${state.font.family.indexOf("Arial")===0?"selected":""}>Arial</option>
-            <option value="Verdana, Geneva, sans-serif" ${state.font.family.indexOf("Verdana")===0?"selected":""}>Verdana</option>
-            <option value="Trebuchet MS, Arial, sans-serif" ${state.font.family.indexOf("Trebuchet")===0?"selected":""}>Trebuchet</option>
-            <option value="Georgia, serif" ${state.font.family.indexOf("Georgia")===0?"selected":""}>Georgia</option>
-            <option value="Times New Roman, Times, serif" ${state.font.family.indexOf("Times New Roman")===0?"selected":""}>Times New Roman</option>
-          </select>
-
-          <div class="grid2">
-            <div>
-              <label>Text Color</label>
-              <input id="fontTextColor" type="color" value="${state.font.textColor}" />
-            </div>
-            <div>
-              <label>Button Radius (px)</label>
-              <input id="btnRadius" type="number" min="6" max="28" value="${state.font.buttonRadius}" />
-            </div>
-          </div>
-
-          <div class="grid2">
-            <div>
-              <label>Base Text Size (px)</label>
-              <input id="baseSize" type="number" min="12" max="22" value="${state.font.baseSize}" />
-            </div>
-            <div>
-              <label>Heading Size (px)</label>
-              <input id="headingSize" type="number" min="18" max="44" value="${state.font.headingSize}" />
-            </div>
-          </div>
-
-          <label>Line Height</label>
-          <input id="lineHeight" type="number" step="0.1" min="1.2" max="2" value="${state.font.lineHeight}" />
-        `;
-        return;
-      }
-
-      if(mode === "page_edit"){
-        const file = state.pages.currentFile || pagesList[0] || "index.html";
-        const base = pageDataCache[file] || { docTitle:"", h1:"", intro:"", cta:"" };
-        const ov = state.pages.overrides[file] || {};
-        const values = {
-          docTitle: ov.docTitle || base.docTitle || "",
-          h1: ov.h1 || base.h1 || "",
-          intro: ov.intro || base.intro || "",
-          cta: ov.cta || base.cta || ""
-        };
-
-        panelTitle.textContent = "Edit Page";
-        panelSubtitle.textContent = `Page: ${file}`;
-        editHint.textContent = "Simple edits (title / first heading / first text / first button).";
-
-        panelBody.innerHTML = `
-          <div class="mini">
-            Editing <b>${escHtml(file)}</b>.
-            This is simple best-effort (works even without changing template code).
-          </div>
-
-          <label>Browser Title (tab)</label>
-          <input id="pgDocTitle" type="text" value="${escHtml(values.docTitle)}" placeholder="Example: Home - My Store" />
-
-          <label>Main Heading (first H1)</label>
-          <input id="pgH1" type="text" value="${escHtml(values.h1)}" placeholder="Example: New Collection" />
-
-          <label>Intro Text (first paragraph)</label>
-          <textarea id="pgIntro" placeholder="Write a short intro...">${escHtml(values.intro)}</textarea>
-
-          <label>Button Text (first button/link)</label>
-          <input id="pgCTA" type="text" value="${escHtml(values.cta)}" placeholder="Example: Shop Now" />
-
-          <div class="mini">Leave fields empty if you don’t want to change them.</div>
-        `;
-        return;
-      }
-
-      if(mode === "page_add"){
-        panelTitle.textContent = "Add Page";
-        panelSubtitle.textContent = "Create a new .html page (needs backend endpoint)";
-        editHint.textContent = "If create API is not installed, it will fail.";
-
-        const dupOptions = pagesList.map(f => `<option value="${escHtml(f)}">${escHtml(prettyPageName(f))}</option>`).join("");
-
-        panelBody.innerHTML = `
-          <div class="mini">
-            This will call <b>api/create-page.php</b> (we can add it next). If you don’t have it yet, you’ll see an error.
-          </div>
-
-          <label>New File Name</label>
-          <input id="newFile" type="text" placeholder="Example: services.html" />
-
-          <label>Duplicate From</label>
-          <select id="dupFrom">
-            ${dupOptions}
-          </select>
-
-          <div class="mini">Tip: use simple names like <b>services.html</b>, <b>faq.html</b>.</div>
-        `;
-        return;
-      }
+      if(activeFile) setActivePage(activeFile, false);
     }
 
-    // Update button handler
-    btnUpdate.addEventListener("click", async ()=>{
-      setSavedStatus(false);
+    function setActivePage(file, load=true){
+      app.currentPage = file;
+      pageChip.textContent = prettyName(file);
+      pageList.querySelectorAll('.pageLink').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.page === file);
+      });
+      if(load) loadPreview(file);
+      showPreview();
+      closeSidebar();
+      setStatus('Page selected', 700);
+    }
 
-      if(mode === "logo"){
-        const showImage = !!document.getElementById("logoShowImage")?.checked;
-        const showText  = !!document.getElementById("logoShowText")?.checked;
-        const brandName = document.getElementById("brandName")?.value ?? state.logo.brandName;
-        const textColor = document.getElementById("logoTextColor")?.value ?? state.logo.textColor;
-        const textSize  = safeNumber(document.getElementById("logoTextSize")?.value, state.logo.textSize);
-        const imgSize   = safeNumber(document.getElementById("logoImgSize")?.value, state.logo.imgSize);
-        const gap       = safeNumber(document.getElementById("logoGap")?.value, state.logo.gap);
-        const align     = document.getElementById("logoAlign")?.value ?? state.logo.align;
-
-        let imgDataUrl = state.logo.imgDataUrl;
-        const fileEl = document.getElementById("logoFile");
-        if(fileEl?.files?.[0]) imgDataUrl = await fileToDataUrl(fileEl.files[0]);
-
-        state.logo = { ...state.logo, showImage, showText, brandName, textColor, textSize, imgSize, gap, align, imgDataUrl };
-
-        applyToIframe();
-        showToast("Logo updated ✅");
-        setView("preview"); // close editor, open preview
-        return;
-      }
-
-      if(mode === "background"){
-        const type = document.getElementById("bgType")?.value ?? state.background.type;
-        const color = document.getElementById("bgColor")?.value ?? state.background.color;
-        const size = document.getElementById("bgSize")?.value ?? state.background.size;
-        const position = document.getElementById("bgPos")?.value ?? state.background.position;
-        const overlayColor = document.getElementById("bgOverlayColor")?.value ?? state.background.overlayColor;
-        const overlayOpacity = Math.max(0, Math.min(1, Number(document.getElementById("bgOverlayOpacity")?.value ?? state.background.overlayOpacity)));
-
-        let imageDataUrl = state.background.imageDataUrl;
-        const fileEl = document.getElementById("bgFile");
-        if(fileEl?.files?.[0]) imageDataUrl = await fileToDataUrl(fileEl.files[0]);
-
-        state.background = { ...state.background, type, color, size, position, overlayColor, overlayOpacity, imageDataUrl };
-
-        applyToIframe();
-        showToast("Background updated ✅");
-        setView("preview");
-        return;
-      }
-
-      if(mode === "font"){
-        const family = document.getElementById("fontFamily")?.value ?? state.font.family;
-        const textColor = document.getElementById("fontTextColor")?.value ?? state.font.textColor;
-        const baseSize = safeNumber(document.getElementById("baseSize")?.value, state.font.baseSize);
-        const headingSize = safeNumber(document.getElementById("headingSize")?.value, state.font.headingSize);
-        const lineHeight = Number(document.getElementById("lineHeight")?.value ?? state.font.lineHeight);
-        const buttonRadius = safeNumber(document.getElementById("btnRadius")?.value, state.font.buttonRadius);
-
-        state.font = { ...state.font, family, textColor, baseSize, headingSize, lineHeight, buttonRadius };
-
-        applyToIframe();
-        showToast("Font updated ✅");
-        setView("preview");
-        return;
-      }
-
-      if(mode === "page_edit"){
-        const file = state.pages.currentFile || pagesList[0] || "index.html";
-        const docTitle = (document.getElementById("pgDocTitle")?.value || "").trim();
-        const h1 = (document.getElementById("pgH1")?.value || "").trim();
-        const intro = (document.getElementById("pgIntro")?.value || "").trim();
-        const cta = (document.getElementById("pgCTA")?.value || "").trim();
-
-        state.pages.overrides[file] = { docTitle, h1, intro, cta };
-
-        applyToIframe();
-        showToast("Page updated ✅");
-        setView("preview");
-        return;
-      }
-
-      if(mode === "page_add"){
-        const newFile = (document.getElementById("newFile")?.value || "").trim();
-        const dupFrom = (document.getElementById("dupFrom")?.value || "").trim();
-
-        if(!/^[a-zA-Z0-9\-_]+\.html$/.test(newFile)){
-          showToast("Use a valid file name like services.html");
-          return;
-        }
-
-        // Optional API (install later). If not installed, you'll see error.
-        const result = await apiPost("api/create-page.php", { new_file: newFile, duplicate_from: dupFrom });
-        if(result.ok){
-          showToast("Page created ✅");
-          // reload pages list
-          await loadPages();
-          sidebarPageSelect.value = newFile;
-          loadPreviewPage(newFile);
-          setView("preview");
-        }else{
-          showToast(result.error || "create-page.php not installed");
-        }
-        return;
-      }
+    pageList.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.pageLink');
+      if(!btn) return;
+      setActivePage(btn.dataset.page || 'index.html');
     });
 
-    // Page dropdown change
-    sidebarPageSelect.addEventListener("change", ()=>{
-      const file = sidebarPageSelect.value;
-      loadPreviewPage(file);
-    });
+    async function loadTemplateInfo(){
+      const data = await apiGet('api/current-template.php');
+      if(!data.ok){
+        alert(data.error || 'Select a template first!');
+        window.location.href = 'templates.html';
+        return false;
+      }
+      app.slug = data.template.slug;
+      topTitle.textContent = 'Website Builder';
+      topSubtitle.textContent = `${data.template.title || data.template.slug} • ${data.template.category || 'template'}`;
+      return true;
+    }
 
     async function loadPages(){
-      const pdata = await apiGet("api/template-pages.php");
+      const pdata = await apiGet('api/template-pages.php');
       if(!pdata.ok){
-        showToast(pdata.error || "Failed to load pages");
+        setStatus(pdata.error || 'Failed to load pages', 1500);
         return;
       }
-      pagesList = pdata.pages || [];
-      sidebarPageSelect.innerHTML = pagesList.map(f => `<option value="${escHtml(f)}">${escHtml(prettyPageName(f))}</option>`).join("");
-
-      // choose entry or first
-      const entry = pdata.entry || pagesList[0] || "index.html";
-      const remembered = state.pages.currentFile && pagesList.includes(state.pages.currentFile) ? state.pages.currentFile : entry;
-
-      sidebarPageSelect.value = remembered;
-      if(!state.pages.currentFile) state.pages.currentFile = remembered;
+      app.pages = pdata.pages || [];
+      app.entry = pdata.entry || app.pages[0] || 'index.html';
+      if(!app.pages.length){
+        app.pages = [app.entry];
+      }
+      renderPages(app.entry);
     }
+
+    function loadPreview(file){
+      if(!app.slug){
+        setStatus('Missing template', 1200);
+        return;
+      }
+      setStatus('Loading…', 0);
+      const url = `template-view.php?slug=${encodeURIComponent(app.slug)}&page=${encodeURIComponent(file)}&v=${Date.now()}`;
+      previewFrame.src = url;
+    }
+
+    previewFrame.addEventListener('load', ()=>{
+      setStatus('Ready', 700);
+    });
+
+    const addBtn = document.getElementById('addPageBtn');
+    addBtn.addEventListener('click', async ()=>{
+      const newFile = prompt('Enter new page filename (example: services.html)');
+      if(!newFile) return;
+      if(!/^[a-zA-Z0-9_-]+\.html$/.test(newFile.trim())){
+        alert('Use a valid file name like services.html');
+        return;
+      }
+      const duplicateFrom = app.currentPage || app.entry || 'index.html';
+      setStatus('Creating page...', 0);
+      const result = await apiPost('api/create-page.php', { new_file: newFile.trim(), duplicate_from: duplicateFrom });
+      if(result.ok){
+        setStatus('Page created', 1200);
+        await loadPages();
+        setActivePage(newFile.trim());
+      }else{
+        alert(result.error || 'Page creation failed (create-page.php missing)');
+        setStatus('Ready', 900);
+      }
+    });
+
+    document.getElementById('profileBtn').addEventListener('click', ()=>{
+      closeSidebar();
+      setStatus('Profile clicked', 900);
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', ()=>{
+      closeSidebar();
+      setStatus('Logged out (demo)', 900);
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', ()=>{
+      setStatus('Saved', 900);
+    });
+
+    function wireSimpleForms(){
+      document.getElementById('panelLogo').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        setStatus('Logo updated (local only)', 900);
+        showPreview();
+      });
+      document.getElementById('panelBrand').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        setStatus('Brand updated (local only)', 900);
+        showPreview();
+      });
+      document.getElementById('panelFont').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        setStatus('Font updated (local only)', 900);
+        showPreview();
+      });
+
+      const logoFile = document.getElementById('logoFile');
+      const logoPreviewImg = document.getElementById('logoPreviewImg');
+      const logoPreviewFallback = document.getElementById('logoPreviewFallback');
+      const removeLogoBtn = document.getElementById('removeLogoBtn');
+
+      function setLogoPreview(dataUrl){
+        if(dataUrl){
+          logoPreviewImg.src = dataUrl;
+          logoPreviewImg.style.display = 'block';
+          logoPreviewFallback.style.display = 'none';
+        }else{
+          logoPreviewImg.removeAttribute('src');
+          logoPreviewImg.style.display = 'none';
+          logoPreviewFallback.style.display = 'block';
+        }
+      }
+
+      logoFile.addEventListener('change', ()=>{
+        const file = logoFile.files && logoFile.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = () => setLogoPreview(String(reader.result || ''));
+        reader.readAsDataURL(file);
+      });
+
+      removeLogoBtn.addEventListener('click', ()=>{
+        setLogoPreview('');
+        logoFile.value = '';
+      });
+    }
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Escape') return;
+      if(document.body.classList.contains('sidebar-open')) return closeSidebar();
+      if(editorView.classList.contains('active')) return showPreview();
+    });
 
     async function init(){
-      setSavedStatus(false);
-      setView("preview");
-
-      // Get selected template + draft
-      const data = await apiGet("api/current-template.php");
-      if(!data.ok){
-        alert("Select a template first!");
-        window.location.href = "templates.html";
-        return;
-      }
-
-      currentTemplate = data.template;
-
-      topTitle.textContent = "Website Manager";
-      topSub.textContent = `${currentTemplate.title || currentTemplate.slug} • ${currentTemplate.category || "template"}`;
-      setAdminTheme(currentTemplate.category);
-
-      // Merge draft if exists
-      if(data.draft){
-        const def = defaultState();
-        state = {
-          ...def,
-          ...data.draft,
-          logo: { ...def.logo, ...(data.draft.logo || {}) },
-          background: { ...def.background, ...(data.draft.background || {}) },
-          font: { ...def.font, ...(data.draft.font || {}) },
-          pages: {
-            ...def.pages,
-            ...(data.draft.pages || {}),
-            overrides: { ...(def.pages.overrides || {}), ...((data.draft.pages && data.draft.pages.overrides) ? data.draft.pages.overrides : {}) }
-          }
-        };
-        setSavedStatus(true);
-      }else{
-        state = defaultState();
-        setSavedStatus(false);
-      }
-
-      // Load pages list, then load iframe
+      wireSimpleForms();
+      const ok = await loadTemplateInfo();
+      if(!ok) return;
       await loadPages();
-
-      const startFile = sidebarPageSelect.value || "index.html";
-      loadPreviewPage(startFile);
-
-      // Nice default
-      setSidebarActive(null);
+      setActivePage(app.entry, true);
     }
 
-    // Start
     init();
   </script>
 </body>

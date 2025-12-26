@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-edit="services.pageTitle" data-type="text">Services | Ruhanix Travel</title>
+  <link rel="icon" data-edit="site.favicon" data-type="image"
+        href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=64&h=64&fit=crop"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body><div class="page">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" data-edit="site.homeHref" data-type="link" href="index.html">
+        <div class="brand-logo">
+          <img data-edit="site.logo" data-type="image"
+               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=200&h=200&fit=crop" alt="Logo"/>
+        </div>
+        <div class="brand-name">
+          <strong data-edit="site.brand" data-type="text">Ruhanix Travel</strong>
+          <span data-edit="site.tagline" data-type="text">Simple trips, clean planning</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <div class="nav-links">
+          <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+          <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+          <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+          <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+          <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+        </div>
+
+        <div class="header-right">
+          <a class="btn btn--inquiry" data-edit="header.inquiry.href" data-type="link" href="inquiry.html">
+            <span data-edit="header.inquiry.label" data-type="text">Inquiry</span>
+          </a>
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <strong data-edit="sidebar.title" data-type="text">Menu</strong>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sidebar-links">
+      <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+      <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+      <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+      <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+      <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+      <a data-edit="header.inquiry.href" data-type="link" href="inquiry.html"><span data-edit="header.inquiry.label" data-type="text">Inquiry</span></a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="card card-pad">
+          <h1 data-edit="services.title" data-type="text">Services</h1>
+          <p data-edit="services.subtitle" data-type="text">Simple list (easy to edit).</p>
+          <div class="hr"></div>
+          <ul style="margin:0; padding-left:18px;">
+            <li data-edit="services.list[0]" data-type="text">Packages</li>
+            <li data-edit="services.list[1]" data-type="text">Hotels</li>
+            <li data-edit="services.list[2]" data-type="text">Transfers</li>
+            <li data-edit="services.list[3]" data-type="text">Visa help</li>
+            <li data-edit="services.list[4]" data-type="text">Custom planning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="year">2025</span> <span data-edit="footer.copyName" data-type="text">Ruhanix Travel</span></span>
+        <span>
+          <a data-edit="footer.legal[0].href" data-type="link" href="terms.html"><span data-edit="footer.legal[0].label" data-type="text">Terms</span></a>
+          •
+          <a data-edit="footer.legal[1].href" data-type="link" href="privacy.html"><span data-edit="footer.legal[1].label" data-type="text">Privacy</span></a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+</div></body>
+</html>

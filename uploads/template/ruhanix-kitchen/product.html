@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruhanix Kitchen — Dish</title>
+  <meta name="description" content="Ruhanix Kitchen — modern responsive food ordering template." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body data-page="product">
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span class="row"><i class="ri-phone-line"></i> <a href="tel:+9101353158535">0135-3158535</a></span>
+        <span class="row"><i class="ri-mail-line"></i> <a href="mailto:care@ruhanixkitchen.in">care@ruhanixkitchen.in</a></span>
+      </div>
+      <div class="topbar__right">
+        <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+        <a href="#" aria-label="Facebook"><i class="ri-facebook-circle-line"></i></a>
+        <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="container navbar__inner">
+      <div class="nav-left">
+        <button class="icon-btn nav__burger" data-open-sidebar aria-label="Open menu">
+          <i class="ri-menu-3-line"></i>
+        </button>
+
+        <ul class="navlinks" aria-label="Desktop links">
+          <li><a data-nav-link href="index.html">Home</a></li>
+          <li><a data-nav-link href="menu.html">Menu</a></li>
+          <li><a data-nav-link href="about.html">About Us</a></li>
+          <li><a data-nav-link href="contact.html">Contact Us</a></li>
+          <li><a data-nav-link href="awards.html">Our Awards</a></li>
+        </ul>
+      </div>
+
+      <a class="brand" href="index.html" aria-label="Ruhanix Kitchen home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-title">
+          <strong>RUHANIX KITCHEN</strong>
+          <span>Fresh • Fast • Flavorful</span>
+        </span>
+      </a>
+
+      <div class="nav-right">
+        <button class="icon-btn" aria-label="Search" id="searchBtn">
+          <i class="ri-search-line"></i>
+        </button>
+        <button class="icon-btn" aria-label="Account" id="accountBtn">
+          <i class="ri-user-3-line"></i>
+        </button>
+        <button class="icon-btn" aria-label="Wishlist" id="wishBtn">
+          <i class="ri-heart-3-line"></i>
+        </button>
+        <button class="icon-btn badge" data-open-cart aria-label="Open cart">
+          <i class="ri-shopping-cart-2-line"></i>
+          <span class="badge__dot" data-cart-count style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="section">
+  <div class="container">
+    <div class="breadcrumb" id="productBreadcrumb" data-animate></div>
+
+    <div id="productHost"></div>
+
+    <div class="section">
+      <div class="row-between" style="margin-bottom:10px">
+        <h2 style="margin:0" data-animate>You Might Like These…</h2>
+        <a class="btn btn--ghost btn--small" href="menu.html"><i class="ri-grid-line"></i> View menu</a>
+      </div>
+      <div class="hscroll" id="youMightLike" aria-label="Recommended dishes"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <div class="brand" style="justify-content:flex-start">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-title">
+          <strong style="color:white">RUHANIX KITCHEN</strong>
+          <span style="color:rgba(255,255,255,.75); display:block">Fresh • Fast • Flavorful</span>
+        </span>
+      </div>
+      <p style="margin:12px 0 0; color:rgba(255,255,255,.78); line-height:1.7">
+        A community-driven kitchen template—built for fast ordering, clean UI, and smooth mobile experience.
+      </p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="awards.html">Our Awards</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <span>© <span data-year></span> Ruhanix Kitchen. All rights reserved.</span>
+    <span style="opacity:.8">Built with <i class="ri-heart-3-fill" aria-hidden="true"></i> mustard &amp; olive.</span>
+  </div>
+</footer>
+
+<div class="fab">
+  <button class="btn btn--small" type="button" onclick="document.querySelector('[data-open-cart]')?.click()">
+    <i class="ri-gift-line"></i> Rewards
+  </button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <i class="ri-notification-3-line"></i>
+  <div>
+    <strong class="toast__title">Title</strong>
+    <div class="toast__msg">Message</div>
+  </div>
+</div>
+
+<script>
+  // Small UX toasts for placeholder icons
+  document.addEventListener("DOMContentLoaded", () => {
+    const toast = window.Toast; // not global in our script, so fallback with simple alerts not needed
+    const btn = (id, msg) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("click", () => {
+        const t = document.getElementById("toast");
+        if (!t) return;
+        t.querySelector(".toast__title").textContent = "Coming soon";
+        t.querySelector(".toast__msg").textContent = msg;
+        t.classList.add("is-show");
+        clearTimeout(window.__tst);
+        window.__tst = setTimeout(() => t.classList.remove("is-show"), 2000);
+      });
+    };
+    btn("searchBtn", "Search modal can be integrated with backend.");
+    btn("accountBtn", "Login/register page can be plugged in here.");
+    btn("wishBtn", "Wishlist can be added easily.");
+  });
+</script>
+<!-- Sidebar -->
+<div class="overlay" id="overlaySidebar" aria-hidden="true"></div>
+<aside class="sidebar" id="sidebar" aria-hidden="true" aria-label="Sidebar menu">
+  <div class="sidebar__top">
+    <div class="brand" style="justify-content:flex-start">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-title">
+        <strong style="color:white">RUHANIX KITCHEN</strong>
+        <span style="color:rgba(255,255,255,.75); display:block">Fresh • Fast • Flavorful</span>
+      </span>
+    </div>
+    <button class="sidebar__close" data-close-sidebar aria-label="Close menu">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <nav class="sidebar__links" aria-label="Mobile links">
+    <a data-nav-link href="index.html"><i class="ri-home-5-line"></i> Home</a>
+    <a data-nav-link href="menu.html"><i class="ri-restaurant-line"></i> Menu</a>
+    <a data-nav-link href="about.html"><i class="ri-information-line"></i> About Us</a>
+    <a data-nav-link href="contact.html"><i class="ri-chat-1-line"></i> Contact Us</a>
+    <a data-nav-link href="awards.html"><i class="ri-award-line"></i> Our Awards</a>
+    <a data-open-cart href="#" onclick="event.preventDefault(); document.querySelector('[data-open-cart]')?.click();"><i class="ri-shopping-cart-2-line"></i> Cart</a>
+  </nav>
+
+  <div class="sidebar__meta">
+    <div class="row"><i class="ri-phone-line"></i> <a href="tel:+9101353158535">0135-3158535</a></div>
+    <div class="row"><i class="ri-mail-line"></i> <a href="mailto:care@ruhanixkitchen.in">care@ruhanixkitchen.in</a></div>
+    <div class="row" style="gap:12px">
+      <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+      <a href="#" aria-label="Facebook"><i class="ri-facebook-circle-line"></i></a>
+      <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+    </div>
+  </div>
+</aside>
+<!-- Cart Drawer -->
+<div class="overlay" id="overlayCart" aria-hidden="true"></div>
+<aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="Cart">
+  <div class="drawer__head">
+    <strong><i class="ri-shopping-bag-3-line" style="margin-right:6px"></i> Your Cart</strong>
+    <button class="drawer__close" data-close-cart aria-label="Close cart">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+  <div class="drawer__body">
+    <p id="cartEmpty" class="sr-only" style="color:var(--muted); margin:0">Cart is empty. Add some dishes to continue.</p>
+    <div id="cartItems"></div>
+  </div>
+  <div class="drawer__foot">
+    <div class="row-between">
+      <span style="font-weight:800">Subtotal</span>
+      <span style="font-weight:900; color:var(--accent)" id="cartSubtotal">₹0.00</span>
+    </div>
+    <div class="btns">
+      <a class="btn btn--ghost btn--small" href="menu.html"><i class="ri-restaurant-line"></i>Menu</a>
+      <a class="btn btn--primary btn--small" href="checkout.html"><i class="ri-bank-card-line"></i>Checkout</a>
+    </div>
+  </div>
+</aside>
+</body>
+</html>

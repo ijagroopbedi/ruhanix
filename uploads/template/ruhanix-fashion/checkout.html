@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{brand} - Checkout</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body class="bg-soft">
+  <main class="section">
+    <div class="container">
+      <div class="stepper">
+        <div class="step is-done">✓ <span>Cart</span></div>
+        <div class="step-line"></div>
+        <div class="step is-active">✓ <span>Address</span></div>
+        <div class="step-line"></div>
+        <div class="step">✓ <span>Payment</span></div>
+      </div>
+
+      <div class="checkout-layout">
+        <section class="panel">
+          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
+            <div style="font-weight:900">Delivery Address</div>
+            <a class="btn btn--ghost" href="./cart.html">Back to Cart</a>
+          </div>
+
+          <form id="addressForm" class="form-grid" style="margin-top:12px">
+            <div class="f">
+              <label>Full Name</label>
+              <input class="input" name="name" required placeholder="Your name">
+            </div>
+            <div class="f">
+              <label>Phone</label>
+              <input class="input" name="phone" required inputmode="numeric" placeholder="9999999999" maxlength="10">
+            </div>
+            <div class="f full">
+              <label>Address</label>
+              <input class="input" name="address" required placeholder="House no, Street, Area">
+            </div>
+            <div class="f">
+              <label>City</label>
+              <input class="input" name="city" required placeholder="City">
+            </div>
+            <div class="f">
+              <label>Pincode</label>
+              <input class="input" name="pincode" required inputmode="numeric" placeholder="110001" maxlength="6">
+            </div>
+            <div class="f full">
+              <button class="btn btn--primary btn--block" type="submit">CONTINUE TO PAYMENT</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel">
+          <div style="font-weight:900; margin-bottom:10px">Order Summary</div>
+          <div class="priced" id="summary"></div>
+          <div class="divider"></div>
+          <div class="total-row">
+            <div>Total Amount</div>
+            <div id="totalPayable">₹0</div>
+          </div>
+          <div class="bonus">Demo flow: payment completes on submit</div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/store.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/checkout.js"></script>
+</body>
+</html>

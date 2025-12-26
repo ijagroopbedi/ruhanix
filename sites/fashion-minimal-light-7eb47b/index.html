@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crème Studio — Minimal Fashion</title>
+  <link rel="stylesheet" href="assets/style.css">
+<style id="rc-brand-style">:root{--rc-accent:#272626;--rc-bg:#ffffff;--rc-text:#111111;--rc-font:Inter,system-ui,-apple-system,sans-serif;}
+html,body{background:var(--rc-bg) !important;color:var(--rc-text) !important;}
+body,button,input,textarea,select{font-family:var(--rc-font) !important;}
+a{color:var(--rc-accent) !important;}
+button, .btn, [type="button"], [type="submit"], [role="button"]{
+  background-color:var(--rc-accent) !important;
+  border-color:var(--rc-accent) !important;
+  color:#fff !important;
+}</style></head>
+<body data-page="home">
+  <div id="rc-header">
+    <header class="rc-top">
+      <div class="wrap">
+        <div class="row">
+          <a class="brand" href="index.html" aria-label="Home">
+            <div class="mark" aria-hidden="true"></div>
+            <div>
+              <b>Crème Studio</b>
+              <span>Minimal fashion, clean fits</span>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="Primary">
+            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart</a><a href="auth.html">Account</a>
+          </nav>
+
+          <div class="actions">
+            <a class="btn" href="shop.html" title="Browse">
+              Browse
+            </a>
+
+            <a class="btn" href="cart.html" title="Cart">
+              Cart <span class="badge" id="cartBadge">0</span>
+            </a>
+
+            <a class="btn primary" href="auth.html" title="Account">
+              Sign in
+            </a>
+
+            <button class="burger" id="burger" type="button" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 10px;">
+          <div class="brand" style="min-width:auto;">
+            <div class="mark" aria-hidden="true"></div>
+            <div>
+              <b>Crème Studio</b>
+              <span>Minimal fashion, clean fits</span>
+            </div>
+          </div>
+          <button class="iconBtn" id="drawerClose" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <div id="drawerLinks">
+          
+            <a href="index.html">
+              <span>Home</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="shop.html">
+              <span>Shop</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="cart.html">
+              <span>Cart</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="auth.html">
+              <span>Account</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+        </div>
+
+        <div class="row2">
+          <a class="btn" href="shop.html">Shop</a>
+          <a class="btn red" href="shop.html?cat=New">New Drop</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="layout">
+          <div class="card copy">
+            <div class="pill"><span class="dot"></span><span>New Drop • Minimal Red Accent</span></div>
+            <h1 class="h1" style="margin-top:14px;">Clean fits.<br>High impact.</h1>
+            <p class="p" style="margin-top:10px;max-width:56ch;">
+              Apple-like layout, light shades, and real flows (shop → product → cart → checkout demo).
+              Built to show how your platform will work.
+            </p>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+              <a class="btn primary" href="shop.html?cat=New">Shop New</a>
+              <a class="btn" href="shop.html">Browse all</a>
+            </div>
+
+            <div class="kpis">
+              <div class="kpi"><b>2–4 Days</b><span>Delivery (demo)</span></div>
+              <div class="kpi"><b>Easy Returns</b><span>14-day window</span></div>
+              <div class="kpi"><b>Studio Grade</b><span>Premium finish</span></div>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="tag">Ad-ready • clean composition</div>
+            <img alt="Hero" src="https://plus.unsplash.com/premium_photo-1708110770188-3e4216b93119?q=80&amp;w=693&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px;">
+          <div>
+            <h2 class="h2">Shop by category</h2>
+            <p class="p">Click — goes to Shop with filter.</p>
+          </div>
+          <a class="btn" href="shop.html">Open shop →</a>
+        </div>
+        <div class="grid-3" id="homeCats">
+      <a class="card pad" href="shop.html?cat=New" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>New</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    
+      <a class="card pad" href="shop.html?cat=Essentials" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>Essentials</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    
+      <a class="card pad" href="shop.html?cat=Dresses" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>Dresses</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    
+      <a class="card pad" href="shop.html?cat=Outerwear" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>Outerwear</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    
+      <a class="card pad" href="shop.html?cat=Work" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>Work</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    
+      <a class="card pad" href="shop.html?cat=Sets" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div>
+          <div class="pill"><span class="dot"></span><span>Sets</span></div>
+          <div class="small" style="margin-top:8px;">Tap to filter shop</div>
+        </div>
+        <div class="btn ghost" style="border-color:transparent;">→</div>
+      </a>
+    </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px;">
+          <div>
+            <h2 class="h2">Featured</h2>
+            <p class="p">Quick view + add to cart works.</p>
+          </div>
+          <a class="btn primary" href="shop.html?cat=New">See new</a>
+        </div>
+        <div class="grid-4" id="featuredGrid">
+    <article class="pcard" aria-label="Rouge Knit Top">
+      <a class="pthumb" href="product.html?id=p1" aria-label="Open Rouge Knit Top">
+        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fbfbfc%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r1%22%20cx%3D%2225%25%22%20cy%3D%2230%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.06%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r2%22%20cx%3D%2278%25%22%20cy%3D%2272%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.041999999999999996%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r1)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r2)%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22760%22%20rx%3D%2242%22%20fill%3D%22none%22%20stroke%3D%22%23101114%22%20stroke-opacity%3D%22.10%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22240%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2272%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.88%22%20font-weight%3D%22700%22%3ERouge%20Knit%20Top%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22310%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2232%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.50%22%3EEssentials%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22780%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2224%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.40%22%3EReplace%20with%20real%20product%20image%20later%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Rouge Knit Top">
+        <div class="priceTag">₹1,799</div>
+      </a>
+      <div class="pinfo">
+        <b>Rouge Knit Top</b>
+        <p>Clean neck, easy layer.</p>
+        <div class="row">
+          <button class="btn" type="button" data-quick="p1">Quick view</button>
+          <button class="btn primary" type="button" data-add="p1">Add</button>
+        </div>
+      </div>
+    </article>
+  
+    <article class="pcard" aria-label="Crème Wide Pants">
+      <a class="pthumb" href="product.html?id=p2" aria-label="Open Crème Wide Pants">
+        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fbfbfc%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r1%22%20cx%3D%2225%25%22%20cy%3D%2230%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.08%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r2%22%20cx%3D%2278%25%22%20cy%3D%2272%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.055999999999999994%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r1)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r2)%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22760%22%20rx%3D%2242%22%20fill%3D%22none%22%20stroke%3D%22%23101114%22%20stroke-opacity%3D%22.10%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22240%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2272%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.88%22%20font-weight%3D%22700%22%3ECr%C3%A8me%20Wide%20Pants%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22310%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2232%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.50%22%3EWork%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22780%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2224%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.40%22%3EReplace%20with%20real%20product%20image%20later%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Crème Wide Pants">
+        <div class="priceTag">₹2,299</div>
+      </a>
+      <div class="pinfo">
+        <b>Crème Wide Pants</b>
+        <p>High-rise, relaxed drape.</p>
+        <div class="row">
+          <button class="btn" type="button" data-quick="p2">Quick view</button>
+          <button class="btn primary" type="button" data-add="p2">Add</button>
+        </div>
+      </div>
+    </article>
+  
+    <article class="pcard" aria-label="Minimal Red Dress">
+      <a class="pthumb" href="product.html?id=p3" aria-label="Open Minimal Red Dress">
+        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fbfbfc%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r1%22%20cx%3D%2225%25%22%20cy%3D%2230%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r2%22%20cx%3D%2278%25%22%20cy%3D%2272%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.06999999999999999%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r1)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r2)%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22760%22%20rx%3D%2242%22%20fill%3D%22none%22%20stroke%3D%22%23101114%22%20stroke-opacity%3D%22.10%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22240%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2272%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.88%22%20font-weight%3D%22700%22%3EMinimal%20Red%20Dress%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22310%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2232%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.50%22%3EDresses%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22780%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2224%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.40%22%3EReplace%20with%20real%20product%20image%20later%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Minimal Red Dress">
+        <div class="priceTag">₹2,899</div>
+      </a>
+      <div class="pinfo">
+        <b>Minimal Red Dress</b>
+        <p>No-fuss silhouette.</p>
+        <div class="row">
+          <button class="btn" type="button" data-quick="p3">Quick view</button>
+          <button class="btn primary" type="button" data-add="p3">Add</button>
+        </div>
+      </div>
+    </article>
+  
+    <article class="pcard" aria-label="Cream Overshirt">
+      <a class="pthumb" href="product.html?id=p4" aria-label="Open Cream Overshirt">
+        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fbfbfc%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r1%22%20cx%3D%2225%25%22%20cy%3D%2230%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.06%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%20%20%3CradialGradient%20id%3D%22r2%22%20cx%3D%2278%25%22%20cy%3D%2272%25%22%20r%3D%2265%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220.041999999999999996%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d12a2f%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r1)%22%2F%3E%0A%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23r2)%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2270%22%20width%3D%221060%22%20height%3D%22760%22%20rx%3D%2242%22%20fill%3D%22none%22%20stroke%3D%22%23101114%22%20stroke-opacity%3D%22.10%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22240%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2272%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.88%22%20font-weight%3D%22700%22%3ECream%20Overshirt%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22310%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2232%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.50%22%3EOuterwear%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22110%22%20y%3D%22780%22%20font-family%3D%22ui-sans-serif%2C%20system-ui%2C%20-apple-system%22%20font-size%3D%2224%22%20fill%3D%22%23101114%22%20fill-opacity%3D%22.40%22%3EReplace%20with%20real%20product%20image%20later%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Cream Overshirt">
+        <div class="priceTag">₹2,499</div>
+      </a>
+      <div class="pinfo">
+        <b>Cream Overshirt</b>
+        <p>Structured, comfy.</p>
+        <div class="row">
+          <button class="btn" type="button" data-quick="p4">Quick view</button>
+          <button class="btn primary" type="button" data-add="p4">Add</button>
+        </div>
+      </div>
+    </article>
+  </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card pad" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div>
+            <h2 class="h2">Newsletter (demo)</h2>
+            <p class="p" style="margin-top:6px;">Hook this to backend later. Frontend layout ready.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;min-width:min(520px,100%);">
+            <input class="input" placeholder="Email address">
+            <button class="btn red" type="button" onclick="alert('Demo only')">Notify me</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="rc-footer">
+    <footer class="rc-foot">
+      <div class="wrap">
+        <div class="footRow">
+          <div>© 2025 Crème Studio • Frontend demo for Ruhanix-style JSON editing</div>
+          <div class="footLinks">
+            <a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a><a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="box" role="dialog" aria-modal="true" aria-label="Quick view">
+      <div class="top">
+        <b id="modalTitle">Quick view</b>
+        <button class="iconBtn" id="modalClose" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="content">
+        <div class="media"><img id="modalImg" alt=""></div>
+        <div class="details">
+          <h3 id="modalH"></h3>
+          <p id="modalP"></p>
+          <div class="chips" id="modalChips" style="margin-top:12px;"></div>
+          <div class="actions">
+            <button class="btn primary" id="modalPrimary" type="button">Add to cart</button>
+            <button class="btn" id="modalSecondary" type="button">View product</button>
+          </div>
+          <p class="small" style="margin-top:10px;">Modal content is data-driven (easy to convert to JSON).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+
+
+</body></html>

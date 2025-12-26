@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ruhanix Legal | Login</title>
+  <link rel="icon" href="./assets/images/logo.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" data-drawer-overlay></div>
+  <aside class="drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title">Ruhanix Legal</div>
+      <button class="drawer-close" type="button" data-drawer-close aria-label="Close menu">✕</button>
+    </div>
+    <nav class="drawer-nav" aria-label="Mobile Navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="team.html">Our Team</a>
+      <a href="why-us.html">Why Us</a>
+      <a href="query.html">Query</a>
+      <a href="contact.html">Contact Us</a>
+      <a class="active" href="login.html">Login</a>
+    </nav>
+    <div class="drawer-footer">
+      <div><strong>Call:</strong> +91 98123 45678</div>
+      <div><strong>Email:</strong> hello@ruhanixlegal.in</div>
+    </div>
+  </aside>
+
+  <div class="site">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">
+          <img src="assets/images/logo.jpg" alt="Ruhanix Legal Logo" />
+          <div>
+            <div class="name"><span style="color:#f39c12;">Ruhanix</span> Legal</div>
+            <div class="tagline">A Team of Professionals</div>
+          </div>
+        </div>
+
+        <div class="topbar-contact">
+          <div class="pill"><span class="icon">☎</span> +91 98123 45678, +91 91234 56789</div>
+          <div class="pill"><span class="icon">✉</span> hello@ruhanixlegal.in</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <button class="nav-toggle" data-drawer-open aria-expanded="false" aria-label="Open menu">☰</button>
+
+        <div class="nav-links" aria-label="Desktop Navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="team.html">Our Team</a>
+          <a href="why-us.html">Why Us</a>
+          <a href="query.html">Query</a>
+          <a href="contact.html">Contact Us</a>
+          <a class="active" href="login.html">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Head -->
+    <div class="page-head">
+      <div class="container">
+        <h1>Login</h1>
+        <div class="breadcrumb">Home / Login</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <main class="content">
+      <div class="container" style="max-width: 520px;">
+        <div class="card">
+          <h2 style="margin-top:0;">Account Login</h2>
+          <p style="color:#666;">Enter your credentials to access your account.</p>
+
+          <!-- Simple workflow: HTML form only -->
+          <form action="#" method="post" style="display:grid; gap:.9rem; margin-top:1rem;">
+            <div style="display:grid; gap:.35rem;">
+              <label for="login_email" style="font-weight:700;">Email</label>
+              <input
+                id="login_email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+                style="width:100%; padding:.7rem .8rem; border-radius:6px; border:1px solid #bdbdbd;"
+              />
+            </div>
+
+            <div style="display:grid; gap:.35rem;">
+              <label for="login_pass" style="font-weight:700;">Password</label>
+              <input
+                id="login_pass"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                required
+                style="width:100%; padding:.7rem .8rem; border-radius:6px; border:1px solid #bdbdbd;"
+              />
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+              <label style="display:flex; align-items:center; gap:.5rem; font-size:.95rem;">
+                <input type="checkbox" name="remember" />
+                Remember me
+              </label>
+              <a href="#" style="color:#0b5aa3; font-size:.95rem;">Forgot password?</a>
+            </div>
+
+            <div style="display:flex; justify-content:center; padding-top:.25rem;">
+              <button class="btn" type="submit">Login</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-top">
+        <div>
+          <h4>Ruhanix Legal</h4>
+          <p style="color:#bdbdbd;">Professional accounting and compliance support.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="display:grid; gap:.35rem;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="query.html">Query</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>+91 98123 45678</p>
+          <p><a href="mailto:hello@ruhanixlegal.in">hello@ruhanixlegal.in</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© All Rights Reserved</div>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

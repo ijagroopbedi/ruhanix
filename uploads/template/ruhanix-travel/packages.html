@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-edit="packages.pageTitle" data-type="text">Packages | Ruhanix Travel</title>
+  <link rel="icon" data-edit="site.favicon" data-type="image"
+        href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=64&h=64&fit=crop"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" data-edit="site.homeHref" data-type="link" href="index.html">
+        <div class="brand-logo">
+          <img data-edit="site.logo" data-type="image"
+               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=200&h=200&fit=crop" alt="Logo"/>
+        </div>
+        <div class="brand-name">
+          <strong data-edit="site.brand" data-type="text">Ruhanix Travel</strong>
+          <span data-edit="site.tagline" data-type="text">Simple trips, clean planning</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <div class="nav-links">
+          <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+          <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+          <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+          <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+          <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+        </div>
+
+        <div class="header-right">
+          <a class="btn btn--inquiry" data-edit="header.inquiry.href" data-type="link" href="inquiry.html">
+            <span data-edit="header.inquiry.label" data-type="text">Inquiry</span>
+          </a>
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <strong data-edit="sidebar.title" data-type="text">Menu</strong>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sidebar-links">
+      <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+      <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+      <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+      <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+      <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+      <a data-edit="header.inquiry.href" data-type="link" href="inquiry.html"><span data-edit="header.inquiry.label" data-type="text">Inquiry</span></a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="card card-pad">
+          <h1 data-edit="packages.heroTitle" data-type="text">Packages</h1>
+          <p data-edit="packages.heroSubtitle" data-type="text">Tap a package to open details.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="grid grid-3">
+
+          <article class="card pkg-card">
+            <div class="pkg-thumb">
+              <img data-edit="packages.list[0].image" data-type="image"
+                   src="https://images.unsplash.com/photo-1526495124232-a04e1849168c?auto=format&fit=crop&w=1400&q=80" alt="Package"/>
+            </div>
+            <div class="pkg-body">
+              <h3 data-edit="packages.list[0].title" data-type="text">Dubai Nights</h3>
+              <p data-edit="packages.list[0].desc" data-type="text">Simple city plan + one desert evening.</p>
+              <small data-edit="packages.list[0].meta" data-type="text">5 Days • International</small>
+            </div>
+            <div class="pkg-actions">
+              <a class="btn btn--link" data-edit="packages.list[0].detailsHref" data-type="link" href="package.html">
+                <span data-edit="packages.list[0].detailsLabel" data-type="text">View details</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card pkg-card">
+            <div class="pkg-thumb">
+              <img data-edit="packages.list[1].image" data-type="image"
+                   src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80" alt="Package"/>
+            </div>
+            <div class="pkg-body">
+              <h3 data-edit="packages.list[1].title" data-type="text">Bali Escape</h3>
+              <p data-edit="packages.list[1].desc" data-type="text">Beach + temples + clean timing.</p>
+              <small data-edit="packages.list[1].meta" data-type="text">6 Days • International</small>
+            </div>
+            <div class="pkg-actions">
+              <a class="btn btn--link" data-edit="packages.list[1].detailsHref" data-type="link" href="package.html">
+                <span data-edit="packages.list[1].detailsLabel" data-type="text">View details</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card pkg-card">
+            <div class="pkg-thumb">
+              <img data-edit="packages.list[2].image" data-type="image"
+                   src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?auto=format&fit=crop&w=1400&q=80" alt="Package"/>
+            </div>
+            <div class="pkg-body">
+              <h3 data-edit="packages.list[2].title" data-type="text">Kerala Serenity</h3>
+              <p data-edit="packages.list[2].desc" data-type="text">Backwaters + tea views.</p>
+              <small data-edit="packages.list[2].meta" data-type="text">4 Days • Domestic</small>
+            </div>
+            <div class="pkg-actions">
+              <a class="btn btn--link" data-edit="packages.list[2].detailsHref" data-type="link" href="package.html">
+                <span data-edit="packages.list[2].detailsLabel" data-type="text">View details</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="year">2025</span> <span data-edit="footer.copyName" data-type="text">Ruhanix Travel</span></span>
+        <span>
+          <a data-edit="footer.legal[0].href" data-type="link" href="terms.html"><span data-edit="footer.legal[0].label" data-type="text">Terms</span></a>
+          •
+          <a data-edit="footer.legal[1].href" data-type="link" href="privacy.html"><span data-edit="footer.legal[1].label" data-type="text">Privacy</span></a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

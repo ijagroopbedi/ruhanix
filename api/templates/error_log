@@ -1,0 +1,118 @@
+[19-Dec-2025 12:06:15 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 5
+[19-Dec-2025 12:06:15 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 6
+[19-Dec-2025 12:06:15 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "RC_DB_HOST" in /home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php:8
+Stack trace:
+#0 /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/featured.php(4): rc_pdo()
+#1 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php on line 8
+[19-Dec-2025 12:31:54 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:31:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:31:55 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:31:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:31:55 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:31:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:33:30 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:33:30 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:34:16 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:34:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:35:37 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:35:37 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 12:54:51 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 12:54:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:06:01 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 13:06:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:06:05 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 13:06:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:06:41 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 13:06:41 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:06:49 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 13:06:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:06:52 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 8
+[19-Dec-2025 13:06:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 9
+[19-Dec-2025 13:27:58 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:27:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:02 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:09 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:18 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:18 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:22 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:27 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:27 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:34 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:34 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:28:54 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:28:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:29:00 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 29
+[19-Dec-2025 13:29:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 30
+[19-Dec-2025 13:36:03 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 49
+[19-Dec-2025 13:36:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 50
+[19-Dec-2025 13:36:03 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 49
+[19-Dec-2025 13:36:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 50
+[19-Dec-2025 13:36:05 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 49
+[19-Dec-2025 13:36:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 50
+[19-Dec-2025 13:37:26 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 49
+[19-Dec-2025 13:37:26 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 50
+[19-Dec-2025 13:40:34 UTC] PHP Warning:  http_response_code(): Cannot set response code - headers already sent (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 49
+[19-Dec-2025 13:40:34 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php:1) in /home3/ruhanixcreations/public_html/beta/ruhanix/includes/helpers.php on line 50
+[19-Dec-2025 14:16:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function clamp_int() in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/featured.php:5
+Stack trace:
+#0 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/featured.php on line 5
+[19-Dec-2025 14:16:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function clamp_int() in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/featured.php:5
+Stack trace:
+#0 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/featured.php on line 5
+[19-Dec-2025 14:16:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function clamp_int() in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/list.php:10
+Stack trace:
+#0 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/list.php on line 10
+[19-Dec-2025 14:16:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function clamp_int() in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/list.php:10
+Stack trace:
+#0 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/templates/list.php on line 10
+[19-Dec-2025 14:33:01 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:02 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:02 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:02 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:02 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:03 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:12 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:33:25 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 14:35:33 UTC] PHP Fatal error:  strict_types declaration must be the very first statement in the script in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 4
+[19-Dec-2025 15:05:27 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:05:27 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:06:14 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:06:16 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:10:37 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:10:37 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:10:39 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:10:48 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:02 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:03 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:04 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:04 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:05 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:07 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:09 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:11 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:21 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:11:24 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:18 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:19 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:19 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:20 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:37 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:13:39 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:15:14 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:17:31 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:17:32 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:17:32 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:19:23 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:19:26 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:20:45 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:20:45 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:20:45 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23
+[19-Dec-2025 15:20:46 UTC] PHP Parse error:  Unmatched '}' in /home3/ruhanixcreations/public_html/beta/ruhanix/config/config.php on line 23

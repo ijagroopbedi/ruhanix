@@ -1,0 +1,18 @@
+[19-Dec-2025 12:32:09 UTC] PHP Warning:  require_once(/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php): Failed to open stream: No such file or directory in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3
+[19-Dec-2025 12:32:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php:3
+Stack trace:
+#0 /home3/ruhanixcreations/public_html/beta/ruhanix/api/sites/create.php(2): require_once()
+#1 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3
+[19-Dec-2025 12:33:28 UTC] PHP Warning:  require_once(/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php): Failed to open stream: No such file or directory in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3
+[19-Dec-2025 12:33:28 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php:3
+Stack trace:
+#0 /home3/ruhanixcreations/public_html/beta/ruhanix/api/sites/create.php(2): require_once()
+#1 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3
+[19-Dec-2025 12:33:34 UTC] PHP Warning:  require_once(/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php): Failed to open stream: No such file or directory in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3
+[19-Dec-2025 12:33:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/ruhanixcreations/public_html/beta/ruhanix/api/db.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php:3
+Stack trace:
+#0 /home3/ruhanixcreations/public_html/beta/ruhanix/api/sites/create.php(2): require_once()
+#1 {main}
+  thrown in /home3/ruhanixcreations/public_html/beta/ruhanix/api/_bootstrap.php on line 3

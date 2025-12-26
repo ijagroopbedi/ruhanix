@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruhanix | Portfolio</title>
+
+  <style>
+    :root{
+      /* PAGE BACKGROUND (accurate navy tone) */
+      --bg:#061a2d;
+      --bg2:#041425;
+
+      /* SECTION PANEL */
+      --panel: rgba(255,255,255,.035);
+      --panelBorder: rgba(255,255,255,.10);
+
+      /* TEXT */
+      --text:#f4f7ff;
+      --muted:#b7c6e2;
+
+      /* ACCENT */
+      --brand:#ff3b3b;
+      --brand2:#ff5a5a;
+
+      /* UI */
+      --radius: 18px;
+      --max: 1120px;
+      --shadow: 0 18px 55px rgba(0,0,0,.42);
+      --shadowSoft: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(950px 550px at 30% -12%, rgba(255,59,59,.12), transparent 60%),
+        radial-gradient(700px 400px at 80% 5%, rgba(80,220,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{max-width:var(--max); margin:0 auto; padding:0 16px}
+    .muted{color:var(--muted)}
+
+    /* ------------------------------------
+      FIXED HEADER (hamburger left + logo + hire me)
+    ------------------------------------- */
+    header{
+      position:fixed;
+      top:0; left:0;
+      width:100%;
+      z-index:1000;
+      background: rgba(6,20,38,.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--panelBorder);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 0;
+    }
+
+    .nav-space{height:78px;}
+
+    .icon-btn{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:.2s ease;
+    }
+    .icon-btn:hover{background: rgba(255,255,255,.06)}
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:.5px;
+      box-shadow: 0 12px 30px rgba(255,59,59,.20);
+    }
+    .brand b{
+      display:block;
+      font-size:14px;
+      line-height:1.1;
+    }
+    .brand span{
+      display:block;
+      font-size:12px;
+      color: var(--muted);
+    }
+
+    .hire-wrap{margin-left:auto}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,59,59,.45);
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+      box-shadow: 0 14px 40px rgba(255,59,59,.16);
+    }
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.04)}
+
+    /* ------------------------------------
+      LEFT SIDEBAR (hamburger)
+    ------------------------------------- */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      opacity:0;
+      pointer-events:none;
+      transition:.2s ease;
+      z-index:1200;
+    }
+    .overlay.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .sidebar{
+      position:absolute;
+      top:0; left:0;
+      width:min(320px, 86vw);
+      height:100%;
+      background: rgba(6,22,40,.96);
+      backdrop-filter: blur(14px);
+      border-right: 1px solid var(--panelBorder);
+      transform: translateX(-105%);
+      transition:.25s ease;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .overlay.open .sidebar{transform: translateX(0)}
+
+    .sidebar-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--panelBorder);
+    }
+
+    .nav{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .nav a{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      transition:.2s ease;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    .sidebar .btn{
+      width:100%;
+      margin-top:auto;
+    }
+
+    /* ------------------------------------
+      SECTION WRAPPER BG (accurate layout)
+    ------------------------------------- */
+    section{
+      padding:56px 0;
+    }
+
+    .section-panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--panelBorder);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .section-title{
+      margin:0 0 14px;
+      font-size:24px;
+      letter-spacing:-.01em;
+    }
+
+    /* ------------------------------------
+      HERO (same reference layout)
+    ------------------------------------- */
+    .hero{
+      padding-top:22px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    .hero-left{
+      padding:30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--panelBorder);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left h1{
+      margin:10px 0 8px;
+      font-size:48px;
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+
+    .hero-left .subtitle{
+      margin:0;
+      font-weight:600;
+      color: rgba(255,255,255,.92);
+    }
+
+    .hero-left .desc{
+      margin-top:14px;
+      line-height:1.75;
+      color: var(--muted);
+    }
+
+    .social{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+    }
+    .social a{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      display:grid;
+      place-items:center;
+      color: var(--muted);
+      font-weight:700;
+      transition:.2s ease;
+    }
+    .social a:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    .hero-photo{
+      border-radius: 26px;
+      border: 1px solid var(--panelBorder);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height:360px;
+      position:relative;
+      background: rgba(255,255,255,.03);
+    }
+    .hero-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .hero-photo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.40));
+      pointer-events:none;
+    }
+
+    /* ------------------------------------
+      STATS STRIP (accurate)
+    ------------------------------------- */
+    .statsbar{
+      margin-top:22px;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 18px 50px rgba(255,59,59,.18);
+    }
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+      padding:20px 0;
+      text-align:center;
+      color:#fff;
+    }
+    .stat b{display:block; font-size:26px; line-height:1.1}
+    .stat span{font-size:12px; opacity:.92}
+
+    /* ------------------------------------
+      ABOUT
+    ------------------------------------- */
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .about-photo{
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid var(--panelBorder);
+      box-shadow: var(--shadowSoft);
+      min-height:260px;
+      position:relative;
+    }
+    .about-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .about-photo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.38));
+      pointer-events:none;
+    }
+
+    /* ------------------------------------
+      SKILLS (FIXED: clean professional cards)
+    ------------------------------------- */
+    .skills-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .skill-card{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      transition:.2s ease;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .skill-icon{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#fff;
+      flex:0 0 44px;
+    }
+
+    .skill-card b{
+      display:block;
+      font-size:14px;
+      margin-bottom:2px;
+    }
+
+    .skill-card span{
+      display:block;
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.4;
+    }
+
+    .skill-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,59,59,.28);
+      background: rgba(255,255,255,.045);
+    }
+
+    /* ------------------------------------
+      PROJECTS (simple professional grid)
+    ------------------------------------- */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .project{
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid var(--panelBorder);
+      background: rgba(255,255,255,.03);
+      transition:.2s ease;
+      box-shadow: var(--shadowSoft);
+    }
+
+    .project:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,59,59,.25);
+    }
+
+    .thumb{
+      height:150px;
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid var(--panelBorder);
+      position:relative;
+    }
+    .thumb::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.40));
+    }
+
+    .project .body{
+      padding:14px;
+    }
+
+    .project h4{
+      margin:0 0 6px;
+      font-size:16px;
+    }
+
+    .project p{
+      margin:0;
+      font-size:13px;
+      line-height:1.6;
+      color: var(--muted);
+    }
+
+    /* ------------------------------------
+      CONTACT (FIXED: accurate + premium UI/UX)
+    ------------------------------------- */
+    .contact-wrap{
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      border-radius: 22px;
+      padding:30px;
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow: 0 22px 65px rgba(255,59,59,.22);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-50px;
+      background:
+        radial-gradient(300px 200px at 20% 20%, rgba(255,255,255,.22), transparent 60%),
+        radial-gradient(320px 220px at 85% 55%, rgba(255,255,255,.15), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+
+    .contact-head{
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .contact-head h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.01em;
+    }
+
+    .contact-head p{
+      margin:6px 0 0;
+      opacity:.92;
+    }
+
+    .contact-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .contact-card{
+      background: rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      border-radius: 16px;
+      padding:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-card h4{
+      margin:0 0 12px;
+      font-size:16px;
+    }
+
+    .contact-line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin:10px 0;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    form{
+      display:grid;
+      gap:10px;
+    }
+
+    input, textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.30);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      outline:none;
+      font:inherit;
+    }
+    textarea{min-height:120px; resize:vertical}
+    input::placeholder, textarea::placeholder{color: rgba(255,255,255,.86)}
+
+    .form-btn{
+      border:1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.18);
+      box-shadow:none;
+    }
+    .form-btn:hover{
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .footer{
+      padding:34px 0 60px;
+      text-align:center;
+      color: rgba(183,198,226,.90);
+      font-size:13px;
+    }
+
+    /* ------------------------------------
+      RESPONSIVE
+    ------------------------------------- */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 560px){
+      .hero-left h1{font-size:38px}
+      .stats{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+    }
+
+    /* Smooth scroll */
+    html{scroll-behavior:smooth}
+  </style>
+</head>
+<body>
+
+  <!-- FIXED TOPBAR -->
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <button class="icon-btn" id="openMenu" aria-label="Open Menu">☰</button>
+
+        <div class="brand">
+          <div class="logo">RX</div>
+          <div>
+            <b>Ruhanix</b>
+            <span>Full Stack Developer</span>
+          </div>
+        </div>
+
+        <div class="hire-wrap">
+          <a class="btn" href="#contact">Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="nav-space"></div>
+
+  <!-- SIDEBAR -->
+  <div class="overlay" id="overlay">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <b>Menu</b>
+        <button class="icon-btn" id="closeMenu" aria-label="Close Menu">✕</button>
+      </div>
+
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn" href="#contact">Hire Me</a>
+    </aside>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <p style="margin:0; font-size:18px;">Hey! This is</p>
+          <h1>Ruhanix</h1>
+          <p class="subtitle">Full Stack Developer</p>
+
+          <div class="social">
+            <a href="#" title="Facebook">f</a>
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="Instagram">◎</a>
+            <a href="#" title="LinkedIn">in</a>
+          </div>
+
+          <p class="desc">
+            I build clean and professional websites and full stack applications with modern UI, reliable APIs and scalable databases.
+            This is a ready-to-use portfolio template and easy to edit.
+          </p>
+        </div>
+
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=1200&q=80" alt="Profile">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="statsbar">
+      <div class="container">
+        <div class="stats">
+          <div class="stat"><b>6+</b><span>Years Experience</span></div>
+          <div class="stat"><b>500+</b><span>Projects Done</span></div>
+          <div class="stat"><b>2000+</b><span>UI Pages Built</span></div>
+          <div class="stat"><b>120+</b><span>Happy Clients</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-panel">
+        <div class="grid-2">
+
+          <div>
+            <h2 class="section-title">About Me</h2>
+            <p class="muted" style="line-height:1.8">
+              Hi, I’m <b style="color:var(--text)">Ruhanix</b>, a Full Stack Developer.
+              I create modern portfolio websites, business websites, dashboards, and backend API systems.
+            </p>
+            <p class="muted" style="line-height:1.8">
+              This template is designed to be easily editable for any client or personal use.
+            </p>
+          </div>
+
+          <div class="about-photo">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80" alt="About">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-panel">
+        <h2 class="section-title" style="text-align:center;">My Skills</h2>
+
+        <div class="skills-grid">
+          <div class="skill-card"><div class="skill-icon">JS</div><div><b>JavaScript</b><span>Frontend logic</span></div></div>
+          <div class="skill-card"><div class="skill-icon">R</div><div><b>React</b><span>UI development</span></div></div>
+          <div class="skill-card"><div class="skill-icon">NX</div><div><b>Next.js</b><span>SSR websites</span></div></div>
+          <div class="skill-card"><div class="skill-icon">N</div><div><b>Node.js</b><span>Backend services</span></div></div>
+          <div class="skill-card"><div class="skill-icon">EX</div><div><b>Express</b><span>REST APIs</span></div></div>
+          <div class="skill-card"><div class="skill-icon">DB</div><div><b>MongoDB</b><span>NoSQL database</span></div></div>
+          <div class="skill-card"><div class="skill-icon">PG</div><div><b>PostgreSQL</b><span>SQL database</span></div></div>
+          <div class="skill-card"><div class="skill-icon">API</div><div><b>Integrations</b><span>Payments / OAuth</span></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-panel">
+        <h2 class="section-title">Completed Projects</h2>
+
+        <div class="projects">
+          <div class="project">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="body">
+              <h4>Admin Dashboard</h4>
+              <p>Analytics dashboard with secure login and CRUD management.</p>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="body">
+              <h4>E-commerce Website</h4>
+              <p>Products, cart, checkout and payment integration.</p>
+            </div>
+          </div>
+
+          <div class="project">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="body">
+              <h4>Landing Pages</h4>
+              <p>Fast business landing pages built for conversion.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (FINAL FIX) -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+
+        <div class="contact-head">
+          <div>
+            <h2>Contact</h2>
+            <p>Let’s work together and build something great.</p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h4>Contact Info</h4>
+            <div class="contact-line"><span>📍</span><span>Your City, India</span></div>
+            <div class="contact-line"><span>✉</span><span>hello@ruhanix.com</span></div>
+            <div class="contact-line"><span>📞</span><span>+91 98765 43210</span></div>
+            <div class="contact-line"><span>⏱</span><span>Mon - Sat (10 AM - 7 PM)</span></div>
+          </div>
+
+          <div class="contact-card">
+            <h4>Send Message</h4>
+            <form id="contactForm">
+              <input placeholder="Full Name" required />
+              <input type="email" placeholder="Email Address" required />
+              <textarea placeholder="Your Message" required></textarea>
+              <button class="btn form-btn" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer">© <span id="year"></span> Ruhanix. All rights reserved.</div>
+    </div>
+  </section>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+    document.getElementById("openMenu").onclick = () => overlay.classList.add("open");
+    document.getElementById("closeMenu").onclick = () => overlay.classList.remove("open");
+    overlay.addEventListener("click", (e) => { if(e.target === overlay) overlay.classList.remove("open"); });
+    overlay.querySelectorAll("a").forEach(a => a.onclick = () => overlay.classList.remove("open"));
+
+    document.getElementById("year").innerText = new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit",(e)=>{
+      e.preventDefault();
+      alert("Message sent (demo). Connect backend later.");
+      e.target.reset();
+    });
+  </script>
+
+</body>
+</html>

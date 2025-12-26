@@ -1,0 +1,95 @@
+<header class="rc-header">
+  <div class="rc-header-inner">
+    <a href="index.html" class="rc-logo">
+      <span class="rc-logo-mark">
+        <!-- ✅ Replace src with your actual logo path -->
+        <img src="./logo.jpg" alt="Ruhanix Creation Logo" class="rc-logo-img" />
+      </span>
+     <!--<span class="rc-logo-text">RUHANIX BUILDER</span>-->
+    </a>
+
+    <!-- Login button -->
+    <a href="auth.html" class="rc-login-btn" aria-label="Login">
+      Login
+    </a>
+  </div>
+</header>
+
+<style>
+  .rc-header {
+    border-bottom: 1px solid #222;
+    background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .rc-header-inner {
+    width: 100%;
+    padding: 0.9rem 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .rc-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* Logo container */
+  .rc-logo-mark {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* ✅ keeps image inside circle */
+    flex: 0 0 5rem;
+  }
+
+  /* Logo image */
+  .rc-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ fills circle */
+    display: block;
+  }
+
+  .rc-logo-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .rc-login-btn {
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #333;
+    background: transparent;
+    color: #fff;
+    transition: 0.2s ease;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rc-login-btn:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  @media (max-width: 600px) {
+    .rc-header-inner {
+      padding: 0.75rem 1.2rem;
+    }
+  }
+</style>

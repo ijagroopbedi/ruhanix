@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-edit="inquiry.pageTitle" data-type="text">Inquiry | Ruhanix Travel</title>
+  <link rel="icon" data-edit="site.favicon" data-type="image"
+        href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=64&h=64&fit=crop"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body><div class="page">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" data-edit="site.homeHref" data-type="link" href="index.html">
+        <div class="brand-logo">
+          <img data-edit="site.logo" data-type="image"
+               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=200&h=200&fit=crop" alt="Logo"/>
+        </div>
+        <div class="brand-name">
+          <strong data-edit="site.brand" data-type="text">Ruhanix Travel</strong>
+          <span data-edit="site.tagline" data-type="text">Simple trips, clean planning</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <div class="nav-links">
+          <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+          <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+          <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+          <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+          <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+        </div>
+
+        <div class="header-right">
+          <a class="btn btn--inquiry" data-edit="header.inquiry.href" data-type="link" href="inquiry.html">
+            <span data-edit="header.inquiry.label" data-type="text">Inquiry</span>
+          </a>
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <strong data-edit="sidebar.title" data-type="text">Menu</strong>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sidebar-links">
+      <a data-edit="nav.items[0].href" data-type="link" href="index.html"><span data-edit="nav.items[0].label" data-type="text">Home</span></a>
+      <a data-edit="nav.items[1].href" data-type="link" href="packages.html"><span data-edit="nav.items[1].label" data-type="text">Packages</span></a>
+      <a data-edit="nav.items[2].href" data-type="link" href="services.html"><span data-edit="nav.items[2].label" data-type="text">Services</span></a>
+      <a data-edit="nav.items[3].href" data-type="link" href="about.html"><span data-edit="nav.items[3].label" data-type="text">About</span></a>
+      <a data-edit="nav.items[4].href" data-type="link" href="contact.html"><span data-edit="nav.items[4].label" data-type="text">Contact</span></a>
+      <a data-edit="header.inquiry.href" data-type="link" href="inquiry.html"><span data-edit="header.inquiry.label" data-type="text">Inquiry</span></a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="card card-pad">
+          <h1 data-edit="inquiry.title" data-type="text">Inquiry Form</h1>
+          <p data-edit="inquiry.subtitle" data-type="text">Fill details. We will reply.</p>
+
+          <div class="hr"></div>
+
+          <form class="form" action="#" method="post">
+            <div class="form-grid">
+              <div class="field">
+                <label data-edit="inquiry.fields.nameLabel" data-type="text" for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name"
+                       data-edit="inquiry.fields.namePlaceholder" data-type="text" required/>
+              </div>
+
+              <div class="field">
+                <label data-edit="inquiry.fields.companyLabel" data-type="text" for="company">Company</label>
+                <input id="company" name="company" type="text" placeholder="Company (optional)"
+                       data-edit="inquiry.fields.companyPlaceholder" data-type="text"/>
+              </div>
+
+              <div class="field">
+                <label data-edit="inquiry.fields.phoneLabel" data-type="text" for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+91..."
+                       data-edit="inquiry.fields.phonePlaceholder" data-type="text" required/>
+              </div>
+
+              <div class="field">
+                <label data-edit="inquiry.fields.emailLabel" data-type="text" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@email.com"
+                       data-edit="inquiry.fields.emailPlaceholder" data-type="text" required/>
+              </div>
+            </div>
+
+            <div class="field">
+              <label data-edit="inquiry.fields.servicesLabel" data-type="text">Services interested in</label>
+              <div class="check-grid">
+                <label class="check-item"><input type="checkbox" name="services[]" value="packages"/>
+                  <span data-edit="inquiry.services[0]" data-type="text">Packages</span></label>
+                <label class="check-item"><input type="checkbox" name="services[]" value="hotels"/>
+                  <span data-edit="inquiry.services[1]" data-type="text">Hotels</span></label>
+                <label class="check-item"><input type="checkbox" name="services[]" value="transfers"/>
+                  <span data-edit="inquiry.services[2]" data-type="text">Transfers</span></label>
+                <label class="check-item"><input type="checkbox" name="services[]" value="visa"/>
+                  <span data-edit="inquiry.services[3]" data-type="text">Visa help</span></label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label data-edit="inquiry.fields.reqLabel" data-type="text" for="req">Requirements</label>
+              <textarea id="req" name="requirements" placeholder="Dates, budget, destination, people..."
+                        data-edit="inquiry.fields.reqPlaceholder" data-type="text" required></textarea>
+            </div>
+
+            <button class="btn btn--inquiry btn--block" data-edit="inquiry.submitLabel" data-type="text" type="submit">
+              Submit
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="year">2025</span> <span data-edit="footer.copyName" data-type="text">Ruhanix Travel</span></span>
+        <span>
+          <a data-edit="footer.legal[0].href" data-type="link" href="terms.html"><span data-edit="footer.legal[0].label" data-type="text">Terms</span></a>
+          •
+          <a data-edit="footer.legal[1].href" data-type="link" href="privacy.html"><span data-edit="footer.legal[1].label" data-type="text">Privacy</span></a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+</div></body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{brand} - Home</title>
+  <meta name="description" content="Modern eCommerce template by Ruhanix Fashions. Publish-ready, responsive, working cart & checkout."/>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__msg">Free Shipping Sitewide • Easy Returns • Secure Payments</div>
+      <a class="topbar__link" href="#footer">HELP / SUPPORT</a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <button class="icon-btn header__burger" id="burgerBtn" aria-label="Open menu" aria-controls="mobileDrawer" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <a class="logo" href="./index.html" aria-label="Home">
+        <span class="logo__text" data-brand="short"></span><span class="logo__dot">.</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="./index.html">HOME</a>
+        <a href="./index.html#categories">CATEGORIES</a>
+        <a class="pilllink" href="./index.html#new">NEW ARRIVALS</a>
+        <a href="./cart.html">CART</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="icon-btn cart-btn" href="./cart.html" aria-label="Cart">
+          <span class="badge" id="cartBadge">0</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 7h15l-1.5 8.5H7.2L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 7 5.2 4H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM18 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <aside class="drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer__overlay" id="drawerOverlay"></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <div class="drawer__top">
+        <div class="drawer__brand" data-brand="name"></div>
+        <button class="icon-btn" id="drawerClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 6 18 18M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="drawer__nav">
+        <a href="./index.html">Home</a>
+        <a href="./index.html#categories">Categories</a>
+        <a href="./index.html#new">New Arrivals</a>
+        <a href="./cart.html">Cart</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="section">
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__wrap">
+          <div class="hero__bg" id="heroBg"></div>
+          <div class="hero__overlay"></div>
+          <div class="hero__content">
+            <div>
+              <div class="hero__kicker">RUHANIX • PREMIUM ESSENTIALS</div>
+              <h1 class="hero__title" data-brand="name"></h1>
+              <p class="hero__tagline" data-brand="tagline"></p>
+              <div class="hero__cta">
+                <a class="btn btn--primary" href="#new">Shop New Arrivals</a>
+                <a class="btn btn--ghost" href="#categories">Browse Categories</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="section" id="categories">
+        <div class="section__head">
+          <h2 class="section__title">CATEGORIES</h2>
+          <p class="section__subtitle">Quick picks for your customers</p>
+        </div>
+        <div class="grid cat-grid" id="categoryGrid"></div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="section" id="new">
+        <div class="section__head">
+          <h2 class="section__title">NEW ARRIVALS</h2>
+          <p class="section__subtitle">Ready to publish • Fully responsive • Working cart</p>
+        </div>
+        <div class="grid product-grid" id="productGrid"></div>
+      </section>
+    </div>
+
+    <footer class="footer" id="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__brand" data-brand="name"></div>
+          <p class="footer__muted">
+            This is a publish-ready template. Change brand details in <code>js/config.js</code> and product data/images in <code>js/data.js</code>.
+          </p>
+          <p class="footer__muted">Support: <span id="supportEmail"></span></p>
+          <p class="footer__muted">© <span id="year"></span> <span data-brand="name"></span></p>
+        </div>
+        <div>
+          <div class="footer__brand">Links</div>
+          <a href="./index.html#categories">Categories</a>
+          <a href="./index.html#new">New Arrivals</a>
+          <a href="./cart.html">Cart</a>
+        </div>
+        <div>
+          <div class="footer__brand">Policies</div>
+          <a href="#footer">Shipping</a>
+          <a href="#footer">Returns</a>
+          <a href="#footer">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/store.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/home.js"></script>
+</body>
+</html>

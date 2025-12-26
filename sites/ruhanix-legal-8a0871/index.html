@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ruhanix Legal – Modern Law Firm Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* ========== RESET ========== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: #050509;
+      color: #f9fafb;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ========== THEME ========== */
+    :root {
+      --bg: #050509;
+      --bg-soft: #0c0f15;
+      --surface: #111318;
+      --border-subtle: #27272f;
+      --gold: #f5c451;
+      --gold-soft: #f9d88b;
+      --text-muted: #9ca3af;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.65);
+      --shadow-subtle: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .rl-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 0% 0%, #111827 0, #050509 52%);
+    }
+
+    .rl-container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* ========== HEADER ========== */
+    .rl-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom,
+        rgba(5, 5, 9, 0.97),
+        rgba(5, 5, 9, 0.88),
+        rgba(5, 5, 9, 0.75)
+      );
+      border-bottom: 1px solid rgba(39, 39, 47, 0.85);
+    }
+
+    .rl-nav {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .rl-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rl-brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background:
+        conic-gradient(from 210deg, #f5c451, #f9d88b, #f97316, #f5c451);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.8);
+    }
+
+    .rl-brand-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .rl-nav-links {
+      display: none; /* mobile first */
+      align-items: center;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .rl-nav-links a {
+      color: var(--text-muted);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .rl-nav-links a:hover,
+    .rl-nav-links a.rl-active {
+      color: #f9fafb;
+      border-color: var(--gold);
+    }
+
+    .rl-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .rl-btn-ghost-sm {
+      display: none;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      font-size: 0.78rem;
+      padding: 0.42rem 0.9rem;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease,
+        transform 0.14s ease, box-shadow 0.16s ease;
+    }
+
+    .rl-btn-ghost-sm:hover {
+      background: #111827;
+      border-color: var(--gold);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .rl-nav-toggle {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .rl-nav-toggle-inner,
+    .rl-nav-toggle-inner::before,
+    .rl-nav-toggle-inner::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #f9fafb;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .rl-nav-toggle-inner::before {
+      transform: translateY(-6px);
+    }
+
+    .rl-nav-toggle-inner::after {
+      transform: translateY(4px);
+    }
+
+    .rl-nav-toggle.is-open .rl-nav-toggle-inner {
+      transform: translateX(0);
+    }
+
+    .rl-nav-toggle.is-open .rl-nav-toggle-inner::before {
+      transform: translateY(0) rotate(45deg);
+    }
+
+    .rl-nav-toggle.is-open .rl-nav-toggle-inner::after {
+      transform: translateY(-2px) rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .rl-nav-drawer {
+      position: fixed;
+      inset: 60px 0 auto;
+      background: #050509f2;
+      border-bottom: 1px solid rgba(39, 39, 47, 0.95);
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      z-index: 30;
+    }
+
+    .rl-nav-drawer.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .rl-nav-drawer a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
+    }
+
+    .rl-nav-drawer a:last-child {
+      border-bottom: none;
+    }
+
+    .rl-nav-drawer a.rl-active {
+      color: var(--gold-soft);
+    }
+
+    /* ========== HERO ========== */
+    .rl-hero {
+      padding: 28px 0 22px;
+    }
+
+    .rl-hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr);
+      gap: 22px;
+    }
+
+    .rl-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 4px 10px 4px 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .rl-pill-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #f5c451, #f97316);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .rl-hero-title {
+      margin-top: 14px;
+      font-size: 1.9rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .rl-hero-title span {
+      color: var(--gold-soft);
+    }
+
+    .rl-hero-sub {
+      margin-top: 10px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 26rem;
+    }
+
+    .rl-hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .rl-btn-primary,
+    .rl-btn-outline {
+      border-radius: 999px;
+      font-size: 0.9rem;
+      padding: 10px 18px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.16s ease, color 0.16s ease,
+        box-shadow 0.16s ease, transform 0.14s ease, border-color 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .rl-btn-primary {
+      background: linear-gradient(135deg, #f5c451, #f97316);
+      color: #111827;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .rl-btn-primary:hover {
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .rl-btn-outline {
+      background: rgba(15, 23, 42, 0.92);
+      border-color: rgba(75, 85, 99, 0.9);
+      color: #e5e7eb;
+    }
+
+    .rl-btn-outline:hover {
+      border-color: var(--gold);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75);
+      transform: translateY(-1px);
+    }
+
+    .rl-hero-meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .rl-hero-meta span strong {
+      display: block;
+      font-size: 0.82rem;
+      color: #e5e7eb;
+    }
+
+    /* Right hero card (mobile: under copy) */
+    .rl-hero-card {
+      margin-top: 6px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 0% 0%, #1f2937 0, #050509 58%);
+      padding: 16px 14px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .rl-hero-card-headline {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .rl-hero-card-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .rl-timeline {
+      border-radius: 16px;
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+      padding: 10px 10px 8px;
+      font-size: 0.78rem;
+    }
+
+    .rl-timeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+    }
+
+    .rl-timeline-step + .rl-timeline-step {
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+    }
+
+    .rl-timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .rl-timeline-dot-inner {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .rl-timeline-text strong {
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    /* ========== TRUST STRIP ========== */
+    .rl-trust {
+      padding: 6px 0 8px;
+    }
+
+    .rl-trust-inner {
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .rl-trust-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .rl-trust-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      color: #e5e7eb;
+    }
+
+    /* ========== GENERIC SECTION WRAPPER ========== */
+    .rl-section {
+      padding: 20px 0 16px;
+    }
+
+    .rl-section-header {
+      margin-bottom: 14px;
+    }
+
+    .rl-section-eyebrow {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .rl-section-title {
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .rl-section-title span {
+      color: var(--gold-soft);
+    }
+
+    .rl-section-sub {
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 21rem;
+    }
+
+    /* ========== PRACTICE AREAS ========== */
+    .rl-grid-areas {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .rl-area-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at 0% 0%, #111827, #050509);
+      padding: 12px 12px 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .rl-area-main h3 {
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .rl-area-main p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .rl-area-tag {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--gold-soft);
+      white-space: nowrap;
+    }
+
+    /* ========== WHY CHOOSE US ========== */
+    .rl-grid-why {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .rl-why-card {
+      border-radius: var(--radius-lg);
+      padding: 12px 12px 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: #050509;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65);
+    }
+
+    .rl-why-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .rl-why-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .rl-why-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== STATS STRIP ========== */
+    .rl-stats {
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: linear-gradient(135deg, #111827, #020617);
+      padding: 10px 12px;
+      display: flex;
+      gap: 14px;
+      font-size: 0.78rem;
+      justify-content: space-between;
+    }
+
+    .rl-stat strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--gold-soft);
+    }
+
+    /* ========== FAQ ========== */
+    .rl-faq-list {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: #050509;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .rl-faq-item + .rl-faq-item {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .rl-faq-button {
+      width: 100%;
+      padding: 10px 12px;
+      background: transparent;
+      border: none;
+      color: #e5e7eb;
+      text-align: left;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .rl-faq-icon {
+      margin-left: 10px;
+      font-size: 1rem;
+      color: var(--gold-soft);
+      transition: transform 0.18s ease;
+    }
+
+    .rl-faq-item.is-open .rl-faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .rl-faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+    }
+
+    .rl-faq-body-inner {
+      padding: 0 12px 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== CONTACT ========== */
+    .rl-contact {
+      padding-bottom: 26px;
+    }
+
+    .rl-contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .rl-contact-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: #050509;
+      box-shadow: var(--shadow-subtle);
+      padding: 14px 14px 12px;
+    }
+
+    .rl-contact-card h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .rl-contact-card p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .rl-form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 9px;
+    }
+
+    .rl-field label {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 3px;
+    }
+
+    .rl-field input,
+    .rl-field textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: #020617;
+      color: #f9fafb;
+      padding: 8px 9px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease,
+        background 0.16s ease;
+    }
+
+    .rl-field textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .rl-field input::placeholder,
+    .rl-field textarea::placeholder {
+      color: #4b5563;
+    }
+
+    .rl-field input:focus,
+    .rl-field textarea:focus {
+      outline: none;
+      border-color: var(--gold-soft);
+      box-shadow: 0 0 0 1px #f5c45144;
+      background: #020617;
+    }
+
+    .rl-contact-side {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at 0% 0%, #111827, #020617);
+      padding: 12px 12px 10px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .rl-contact-side h3 {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .rl-contact-info {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .rl-contact-info a {
+      color: var(--gold-soft);
+    }
+
+    /* ========== STICKY CALL BAR (MOBILE) ========== */
+    .rl-call-bar {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 35;
+      padding: 8px 16px 10px;
+      background: linear-gradient(to top, #020617, rgba(2, 6, 23, 0.88));
+      border-top: 1px solid rgba(30, 64, 175, 0.6);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .rl-call-small {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .rl-call-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rl-btn-call,
+    .rl-btn-consult {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.78rem;
+      padding: 7px 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.16s ease, border-color 0.16s ease,
+        box-shadow 0.16s ease, transform 0.14s ease;
+    }
+
+    .rl-btn-call {
+      background: #020617;
+      border-color: rgba(55, 65, 81, 0.9);
+      color: #f9fafb;
+    }
+
+    .rl-btn-call:hover {
+      border-color: var(--gold-soft);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .rl-btn-consult {
+      background: linear-gradient(135deg, #f5c451, #f97316);
+      color: #111827;
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.85);
+    }
+
+    .rl-btn-consult:hover {
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.9);
+      transform: translateY(-1px);
+    }
+
+    /* ========== FOOTER ========== */
+    .rl-footer {
+      padding: 14px 0 60px; /* extra bottom for call bar */
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: #020617;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .rl-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rl-footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .rl-footer-links a {
+      color: var(--text-muted);
+    }
+
+    /* ========== DESKTOP / TABLET BREAKPOINTS ========== */
+    @media (min-width: 640px) {
+      .rl-hero-inner {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+        align-items: center;
+      }
+
+      .rl-hero {
+        padding-top: 34px;
+      }
+
+      .rl-grid-areas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .rl-grid-why {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .rl-contact-grid {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      }
+
+      .rl-call-bar {
+        display: none;
+      }
+
+      .rl-footer {
+        padding-bottom: 18px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .rl-nav-links {
+        display: flex;
+      }
+
+      .rl-nav-drawer,
+      .rl-nav-toggle {
+        display: none;
+      }
+
+      .rl-btn-ghost-sm {
+        display: inline-flex;
+      }
+
+      .rl-hero-title {
+        font-size: 2.2rem;
+      }
+
+      .rl-hero-sub {
+        font-size: 0.98rem;
+      }
+
+      .rl-section {
+        padding-top: 26px;
+      }
+
+      .rl-trust-inner {
+        font-size: 0.75rem;
+      }
+
+      .rl-stats {
+        padding: 12px 16px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .rl-hero-title {
+        font-size: 2.4rem;
+      }
+
+      .rl-hero {
+        padding-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body class="rl-page">
+  <!-- HEADER -->
+  <header class="rl-header">
+    <div class="rl-container rl-nav">
+      <a href="#top" class="rl-brand">
+        <span class="rl-brand-mark"></span>
+        <span class="rl-brand-text">Ruhanix Legal</span>
+      </a>
+
+      <nav class="rl-nav-links">
+        <a href="#services" class="rl-active">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#faq">FAQs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="rl-nav-actions">
+        <button class="rl-btn-ghost-sm" onclick="location.href='#contact'">
+          Book consult
+        </button>
+        <button
+          class="rl-nav-toggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          <span class="rl-nav-toggle-inner"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <nav class="rl-nav-drawer" id="rl-nav-drawer">
+      <a href="#services" class="rl-active">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main id="top">
+    <!-- HERO -->
+    <section class="rl-hero">
+      <div class="rl-container rl-hero-inner">
+        <div>
+          <div class="rl-pill">
+            <span class="rl-pill-dot"></span>
+            <span>Business · Compliance · Disputes</span>
+          </div>
+
+          <h1 class="rl-hero-title">
+            Calm, clear legal counsel for
+            <span>modern businesses.</span>
+          </h1>
+
+          <p class="rl-hero-sub">
+            Ruhanix Legal is a clean website template for law firms and solo
+            practitioners who want to look sharp on every device—without
+            shouting.
+          </p>
+
+          <div class="rl-hero-actions">
+            <button class="rl-btn-primary" onclick="location.href='#contact'">
+              Book a consultation
+            </button>
+            <button class="rl-btn-outline" onclick="location.href='tel:+919999999999'">
+              Call office
+              <span>+91&nbsp;99XX-XXX-XXX</span>
+            </button>
+          </div>
+
+          <div class="rl-hero-meta">
+            <span>
+              <strong>24h response</strong>
+              Enquiries answered on working days.
+            </span>
+            <span>
+              <strong>Plain-language advice</strong>
+              No unnecessary jargon or surprises.
+            </span>
+          </div>
+        </div>
+
+        <aside class="rl-hero-card" aria-label="Consultation overview">
+          <div class="rl-hero-card-headline">
+            Your first 30-minute consultation is structured.
+          </div>
+          <div class="rl-hero-card-sub">
+            Use this copy to explain how you work with new clients and what
+            they can expect from the first call.
+          </div>
+
+          <div class="rl-timeline">
+            <div class="rl-timeline-step">
+              <div class="rl-timeline-dot">
+                <div class="rl-timeline-dot-inner"></div>
+              </div>
+              <div class="rl-timeline-text">
+                <strong>01 · Understand</strong>
+                We map the key facts, timelines and people involved.
+              </div>
+            </div>
+            <div class="rl-timeline-step">
+              <div class="rl-timeline-dot">
+                <div class="rl-timeline-dot-inner"></div>
+              </div>
+              <div class="rl-timeline-text">
+                <strong>02 · Options</strong>
+                You receive practical options, risks and likely timelines.
+              </div>
+            </div>
+            <div class="rl-timeline-step">
+              <div class="rl-timeline-dot">
+                <div class="rl-timeline-dot-inner"></div>
+              </div>
+              <div class="rl-timeline-text">
+                <strong>03 · Next steps</strong>
+                Clear fees and next steps if you decide to move forward.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="rl-trust">
+      <div class="rl-container">
+        <div class="rl-trust-inner">
+          <span>Built to showcase trust, not noise.</span>
+          <div class="rl-trust-badges">
+            <span class="rl-trust-pill">Corporate</span>
+            <span class="rl-trust-pill">Startups</span>
+            <span class="rl-trust-pill">Founders &amp; families</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES / PRACTICE AREAS -->
+    <section class="rl-section" id="services">
+      <div class="rl-container">
+        <header class="rl-section-header">
+          <div class="rl-section-eyebrow">Practice areas</div>
+          <h2 class="rl-section-title">
+            Focused on the work that <span>moves your business.</span>
+          </h2>
+          <p class="rl-section-sub">
+            Swap these cards with your own areas of practice. The layout is
+            mobile-first and easy to scan.
+          </p>
+        </header>
+
+        <div class="rl-grid-areas">
+          <article class="rl-area-card">
+            <div class="rl-area-main">
+              <h3>Corporate &amp; Commercial</h3>
+              <p>
+                Company formation, shareholder agreements, vendor contracts and
+                everyday business documentation.
+              </p>
+            </div>
+            <span class="rl-area-tag">Retainer-ready</span>
+          </article>
+
+          <article class="rl-area-card">
+            <div class="rl-area-main">
+              <h3>Startup &amp; Investment</h3>
+              <p>
+                Term sheets, cap tables, ESOPs and investor documentation for
+                early-stage teams.
+              </p>
+            </div>
+            <span class="rl-area-tag">Founders</span>
+          </article>
+
+          <article class="rl-area-card">
+            <div class="rl-area-main">
+              <h3>Disputes &amp; Recovery</h3>
+              <p>
+                Commercial disputes, notices and recovery actions with clear
+                communication at every stage.
+              </p>
+            </div>
+            <span class="rl-area-tag">Litigation</span>
+          </article>
+
+          <article class="rl-area-card">
+            <div class="rl-area-main">
+              <h3>Data &amp; Compliance</h3>
+              <p>
+                Policies, NDAs and compliance programs tailored to how you
+                operate, not generic templates.
+              </p>
+            </div>
+            <span class="rl-area-tag">Compliance</span>
+          </article>
+        </div>
+
+        <div class="rl-stats" aria-label="Firm metrics">
+          <div class="rl-stat">
+            <strong>+120</strong>
+            recurring business matters handled for clients.
+          </div>
+          <div class="rl-stat">
+            <strong>3–5</strong>
+            days average turnaround for standard contracts.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="rl-section" id="why">
+      <div class="rl-container">
+        <header class="rl-section-header">
+          <div class="rl-section-eyebrow">Why Ruhanix Legal</div>
+          <h2 class="rl-section-title">
+            Designed to feel <span>measured, not aggressive.</span>
+          </h2>
+          <p class="rl-section-sub">
+            Use this section to explain how you work differently from larger
+            firms or generic legal portals.
+          </p>
+        </header>
+
+        <div class="rl-grid-why">
+          <article class="rl-why-card">
+            <div class="rl-why-label">Communication</div>
+            <h3>One point of contact</h3>
+            <p>
+              Clients work with a dedicated lawyer who knows their history,
+              context and priorities.
+            </p>
+          </article>
+
+          <article class="rl-why-card">
+            <div class="rl-why-label">Fees</div>
+            <h3>Transparent pricing</h3>
+            <p>
+              Replace hourly surprises with clear estimates, retainers and
+              written scopes of work.
+            </p>
+          </article>
+
+          <article class="rl-why-card">
+            <div class="rl-why-label">Delivery</div>
+            <h3>Business-first advice</h3>
+            <p>
+              Opinions arrive with next steps, not just legal theory—so you
+              can move quickly.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="rl-section" id="faq">
+      <div class="rl-container">
+        <header class="rl-section-header">
+          <div class="rl-section-eyebrow">FAQs</div>
+          <h2 class="rl-section-title">
+            Answer questions <span>before clients ask.</span>
+          </h2>
+        </header>
+
+        <div class="rl-faq-list" aria-label="Frequently asked questions">
+          <article class="rl-faq-item">
+            <button class="rl-faq-button" type="button">
+              <span>Do you work with clients outside my city?</span>
+              <span class="rl-faq-icon">+</span>
+            </button>
+            <div class="rl-faq-body">
+              <div class="rl-faq-body-inner">
+                Yes. Most work can be handled over email and video calls. Use
+                this text to explain how you manage out-of-city matters and
+                signings.
+              </div>
+            </div>
+          </article>
+
+          <article class="rl-faq-item">
+            <button class="rl-faq-button" type="button">
+              <span>How are consultations billed?</span>
+              <span class="rl-faq-icon">+</span>
+            </button>
+            <div class="rl-faq-body">
+              <div class="rl-faq-body-inner">
+                You can keep an initial call complimentary or credit the fee
+                towards future work. Update this block to reflect your policy.
+              </div>
+            </div>
+          </article>
+
+          <article class="rl-faq-item">
+            <button class="rl-faq-button" type="button">
+              <span>Can you review my existing contracts?</span>
+              <span class="rl-faq-icon">+</span>
+            </button>
+            <div class="rl-faq-body">
+              <div class="rl-faq-body-inner">
+                Absolutely. Many clients start with a contract health-check
+                across their suppliers, employees or partners.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="rl-section rl-contact" id="contact">
+      <div class="rl-container rl-contact-grid">
+        <div class="rl-contact-card">
+          <h2>Share a few details.</h2>
+          <p>
+            This simple form is designed for mobile screens. Connect it to your
+            email, CRM or intake system via Ruhanix.
+          </p>
+
+          <form>
+            <div class="rl-form-grid">
+              <div class="rl-field">
+                <label for="rl-name">Full name</label>
+                <input id="rl-name" type="text" placeholder="Your name" />
+              </div>
+              <div class="rl-field">
+                <label for="rl-email">Email</label>
+                <input
+                  id="rl-email"
+                  type="email"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <div class="rl-field">
+                <label for="rl-phone">Phone</label>
+                <input
+                  id="rl-phone"
+                  type="tel"
+                  placeholder="+91-98XX-XXX-XXX"
+                />
+              </div>
+              <div class="rl-field">
+                <label for="rl-topic">Matter</label>
+                <input
+                  id="rl-topic"
+                  type="text"
+                  placeholder="Eg. contract review, dispute, setup"
+                />
+              </div>
+              <div class="rl-field" style="grid-column: 1/-1">
+                <label for="rl-message">Brief background</label>
+                <textarea
+                  id="rl-message"
+                  placeholder="Share key dates, parties involved and what you need help with."
+                ></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="rl-btn-primary" style="margin-top: 10px">
+              Submit enquiry
+            </button>
+          </form>
+        </div>
+
+        <aside class="rl-contact-side">
+          <h3>Office details</h3>
+          <p>
+            Replace this with your actual address and timings. The layout is
+            compact enough for mobile but still clear on desktop.
+          </p>
+
+          <div class="rl-contact-info">
+            <div>Ruhanix Legal (Template)</div>
+            <div>Business District, City Name</div>
+            <div>Mon–Fri · 10:00–18:00</div>
+            <br />
+            <div>
+              Phone:
+              <a href="tel:+919999999999">+91-99XX-XXX-XXX</a>
+            </div>
+            <div>
+              Email:
+              <a href="mailto:hello@ruhanixlegal.test">hello@ruhanixlegal.test</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- STICKY CALL BAR (MOBILE) -->
+  <div class="rl-call-bar">
+    <div class="rl-call-small">
+      Prefer speaking? Call the office or book a consult.
+    </div>
+    <div class="rl-call-actions">
+      <button class="rl-btn-call" onclick="location.href='tel:+919999999999'">
+        ☎ Call
+      </button>
+      <button class="rl-btn-consult" onclick="location.href='#contact'">
+        Book consult
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rl-footer">
+    <div class="rl-container rl-footer-row">
+      <span>© 2025 Ruhanix Legal · Template for law firms.</span>
+      <div class="rl-footer-links">
+        <a href="#faq">FAQs</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAV TOGGLE
+    const navToggle = document.querySelector(".rl-nav-toggle");
+    const navDrawer = document.getElementById("rl-nav-drawer");
+
+    if (navToggle && navDrawer) {
+      navToggle.addEventListener("click", () => {
+        const isOpen = navToggle.classList.toggle("is-open");
+        navDrawer.classList.toggle("is-open", isOpen);
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        document.body.style.overflow = isOpen ? "hidden" : "";
+      });
+
+      navDrawer.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") {
+          navToggle.classList.remove("is-open");
+          navDrawer.classList.remove("is-open");
+          navToggle.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        }
+      });
+    }
+
+    // FAQ ACCORDION (mobile friendly)
+    document.querySelectorAll(".rl-faq-item").forEach((item) => {
+      const button = item.querySelector(".rl-faq-button");
+      const body = item.querySelector(".rl-faq-body");
+
+      button.addEventListener("click", () => {
+        const isOpen = item.classList.contains("is-open");
+
+        // close others
+        document.querySelectorAll(".rl-faq-item").forEach((other) => {
+          if (other !== item) {
+            other.classList.remove("is-open");
+            const otherBody = other.querySelector(".rl-faq-body");
+            if (otherBody) otherBody.style.maxHeight = 0;
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add("is-open");
+          body.style.maxHeight = body.scrollHeight + "px";
+        } else {
+          item.classList.remove("is-open");
+          body.style.maxHeight = 0;
+        }
+      });
+
+      // default: closed
+      body.style.maxHeight = 0;
+    });
+  </script>
+</body>
+</html>

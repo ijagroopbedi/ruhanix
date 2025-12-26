@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{brand} - Cart</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body class="bg-soft">
+  <main class="section">
+    <div class="container">
+      <div class="stepper">
+        <div class="step is-done">✓ <span>Cart</span></div>
+        <div class="step-line"></div>
+        <div class="step is-active">✓ <span>Address</span></div>
+        <div class="step-line"></div>
+        <div class="step">✓ <span>Payment</span></div>
+      </div>
+
+      <div class="cart-layout">
+        <section style="display:grid; gap:12px">
+          <div class="panel">
+            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center">
+              <div style="font-weight:900">Your Cart</div>
+              <a class="btn btn--ghost" href="./index.html#new">Continue Shopping</a>
+            </div>
+          </div>
+
+          <div id="cartItems"></div>
+        </section>
+
+        <aside style="display:grid; gap:12px">
+          <div class="panel">
+            <div style="font-weight:900; margin-bottom:10px">Price Details (<span id="itemsCount">0</span> items)</div>
+            <div class="priced" id="priceDetails"></div>
+            <div class="divider"></div>
+            <div class="total-row">
+              <div>Total Amount</div>
+              <div id="totalAmount">₹0</div>
+            </div>
+            <div class="bonus">Extra savings applied at payment step</div>
+            <a class="btn btn--primary btn--block" href="./checkout.html" style="margin-top:12px">PLACE ORDER</a>
+          </div>
+
+          <div class="panel">
+            <div style="font-weight:900; margin-bottom:8px">Need help?</div>
+            <div style="color:#666; font-weight:800" data-brand="name"></div>
+            <div style="color:#666; font-weight:800">Email: <span id="supportEmail2"></span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/store.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/cart.js"></script>
+</body>
+</html>

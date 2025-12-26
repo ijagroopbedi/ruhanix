@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account — Crème Studio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="auth">
+  <div id="rc-header">
+    <header class="rc-top">
+      <div class="wrap">
+        <div class="row">
+          <a class="brand" href="index.html" aria-label="Home">
+            <div class="mark" aria-hidden="true"></div>
+            <div>
+              <b>Crème Studio</b>
+              <span>Minimal fashion, clean fits</span>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="Primary">
+            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart</a><a href="auth.html">Account</a>
+          </nav>
+
+          <div class="actions">
+            <a class="btn" href="shop.html" title="Browse">
+              Browse
+            </a>
+
+            <a class="btn" href="cart.html" title="Cart">
+              Cart <span class="badge" id="cartBadge">0</span>
+            </a>
+
+            <a class="btn primary" href="auth.html" title="Account">
+              Sign in
+            </a>
+
+            <button class="burger" id="burger" type="button" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 10px;">
+          <div class="brand" style="min-width:auto;">
+            <div class="mark" aria-hidden="true"></div>
+            <div>
+              <b>Crème Studio</b>
+              <span>Minimal fashion, clean fits</span>
+            </div>
+          </div>
+          <button class="iconBtn" id="drawerClose" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <div id="drawerLinks">
+          
+            <a href="index.html">
+              <span>Home</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="shop.html">
+              <span>Shop</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="cart.html">
+              <span>Cart</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+            <a href="auth.html">
+              <span>Account</span>
+              <span style="opacity:.5;">›</span>
+            </a>
+          
+        </div>
+
+        <div class="row2">
+          <a class="btn" href="shop.html">Shop</a>
+          <a class="btn red" href="shop.html?cat=New">New Drop</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="wrap" id="authView">
+    <div class="grid-2">
+      <div class="card pad">
+        <div class="pill"><span class="dot"></span><span>Account</span></div>
+        <h2 class="h2" style="margin-top:12px;">Sign in / Sign up (Demo)</h2>
+        <p class="p" style="margin-top:6px;">Stores a fake user in localStorage so you can see how auth flows work.</p>
+
+        <hr class="sep">
+
+        <div class="grid-2">
+          <div>
+            <label class="small">Name</label>
+            <input class="input" id="aName" placeholder="Your name" value="">
+          </div>
+          <div>
+            <label class="small">Email</label>
+            <input class="input" id="aEmail" placeholder="you@email.com" value="">
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label class="small">Password</label>
+          <input class="input" id="aPass" type="password" placeholder="••••••••">
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+          <button class="btn primary" id="saveUser">Sign in</button>
+          <button class="btn" id="logout" disabled="">Log out</button>
+        </div>
+
+        <p class="small" style="margin-top:10px;">Replace this with real API auth later.</p>
+      </div>
+
+      <div class="card pad">
+        <h2 class="h2">How it works (Frontend)</h2>
+        <p class="p" style="margin-top:6px;">
+          • Auth stored as JSON in localStorage<br>
+          • Header updates to show “Hi, Name”<br>
+          • Cart persists across pages<br>
+          • Product page uses ?id=...<br>
+          • Shop supports search + filter + sort
+        </p>
+
+        <hr class="sep">
+
+        <button class="btn red" id="goShop">Go to Shop</button>
+      </div>
+    </div>
+  </div>
+  </main>
+
+  <div id="rc-footer">
+    <footer class="rc-foot">
+      <div class="wrap">
+        <div class="footRow">
+          <div>© 2025 Crème Studio • Frontend demo for Ruhanix-style JSON editing</div>
+          <div class="footLinks">
+            <a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a><a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="assets/app.js"></script>
+
+
+</body></html>

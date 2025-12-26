@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Crème Studio</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body data-page="product">
+  <div id="rc-header"></div>
+
+  <main class="section">
+    <div class="wrap" id="productView"></div>
+  </main>
+
+  <div id="rc-footer"></div>
+
+  <!-- Quick View Modal (used for related too) -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="box" role="dialog" aria-modal="true" aria-label="Quick view">
+      <div class="top">
+        <b id="modalTitle">Quick view</b>
+        <button class="iconBtn" id="modalClose" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="content">
+        <div class="media"><img id="modalImg" alt=""></div>
+        <div class="details">
+          <h3 id="modalH"></h3>
+          <p id="modalP"></p>
+          <div class="chips" id="modalChips" style="margin-top:12px;"></div>
+          <div class="actions">
+            <button class="btn primary" id="modalPrimary" type="button">Add to cart</button>
+            <button class="btn" id="modalSecondary" type="button">View product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

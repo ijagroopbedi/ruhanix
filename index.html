@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruhanix Builder</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,sans-serif;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+
+      /* ✅ Sticky footer layout */
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* ✅ Push footer to bottom when content is short */
+    #footer{ margin-top:auto; }
+
+    .hero{
+      text-align:center;
+      padding:2.2rem 1.6rem 1.5rem;
+    }
+    .hero h1{
+      font-size:2.1rem;
+      font-weight:800;
+      color:#fff;
+    }
+    .hero p{
+      margin-top:.6rem;
+      color:#b5b5b5;
+      font-size:1rem;
+    }
+
+    .search-container{
+      margin:1.4rem auto 0;
+      max-width:620px;
+    }
+    .search-input-wrap{
+      position:relative;
+    }
+    .search-icon{
+      position:absolute;
+      left:1rem;
+      top:50%;
+      transform:translateY(-50%);
+      opacity:.6;
+      pointer-events:none;
+      font-size:1rem;
+      color:#fff;
+    }
+    .search-input{
+      width:100%;
+      padding:1rem 1rem 1rem 2.8rem;
+      border-radius:999px;
+      border:1px solid #333;
+      font-size:1.05rem;
+      display:block;
+      background:#0b0b0b;
+      color:#fff;
+      outline:none;
+    }
+    .search-input::placeholder{ color:#777; }
+
+    .suggestions{
+      display:none;
+      border-radius:1rem;
+      border:1px solid #222;
+      background:#0b0b0b;
+      margin-top:.45rem;
+      overflow:hidden;
+    }
+    .suggestions div{
+      padding:.9rem 1rem;
+      border-bottom:1px solid #1a1a1a;
+      cursor:pointer;
+      color:#fff;
+    }
+    .suggestions div:hover{
+      background:#111;
+    }
+
+    /* CONTROLS */
+    .controls{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:1rem 1.6rem 0;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .dropdown{
+      position:relative;
+      flex:0 0 auto;
+    }
+    .dropdown-btn{
+      padding:.7rem 1.1rem;
+      border-radius:999px;
+      border:1px solid #333;
+      font-size:.92rem;
+      background:#0b0b0b;
+      cursor:pointer;
+      min-width:190px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:.4rem;
+      white-space:nowrap;
+      overflow:visible;
+      text-overflow:clip;
+      color:#fff;
+    }
+    .dropdown-btn::after{
+      content:"▾";
+      font-size:.7rem;
+      opacity:.7;
+      margin-left:auto;
+    }
+    .dropdown-menu{
+      position:absolute;
+      top:115%;
+      left:0;
+      min-width:100%;
+      max-width:260px;
+      background:#0b0b0b;
+      border-radius:.9rem;
+      border:1px solid #333;
+      display:none;
+      z-index:40;
+      box-shadow:0 14px 30px rgba(0,0,0,0.5);
+      overflow:hidden;
+    }
+    .dropdown-menu div{
+      padding:.8rem 1rem;
+      border-bottom:1px solid #1a1a1a;
+      cursor:pointer;
+      white-space:nowrap;
+      color:#fff;
+    }
+    .dropdown-menu div:last-child{border-bottom:none;}
+    .dropdown-menu div:hover{background:#111;}
+
+    @media(max-width:600px){
+      .controls{
+        justify-content:center;
+        flex-wrap:nowrap;
+      }
+      .dropdown-btn{
+        min-width:170px;
+        width:auto;
+        padding:.6rem .9rem;
+        font-size:.86rem;
+      }
+      .dropdown-menu{
+        max-width:none;
+        min-width:100%;
+      }
+    }
+    @media(max-width:420px){
+      .controls{
+        flex-direction:row;
+        align-items:stretch;
+      }
+      .dropdown-btn{
+        width:100%;
+        justify-content:center;
+      }
+      .dropdown-menu{
+        width:100%;
+        left:0;
+      }
+    }
+
+    /* GRID & CARD */
+    .template-grid{
+      padding:2rem 1.6rem 1rem;
+      display:grid;
+      gap:1.6rem;
+    }
+    @media(min-width:600px){
+      .template-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(min-width:900px){
+      .template-grid{grid-template-columns:repeat(3,1fr);}
+    }
+    .template-card{
+      position:relative;
+      border-radius:1.25rem;
+      border:1px solid #222;
+      background:#0b0b0b;
+      box-shadow:0 18px 40px rgba(0,0,0,0.55);
+      overflow:hidden;
+      transition:.3s ease;
+    }
+    .template-card::before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,.0),rgba(255,255,255,.08));
+      opacity:0;
+      transition:.3s ease;
+      pointer-events:none;
+    }
+    .template-card:hover{
+      transform:translateY(-6px) scale(1.01);
+      box-shadow:0 22px 55px rgba(0,0,0,0.75);
+    }
+    .template-card:hover::before{opacity:1;}
+    .template-thumb{
+      padding:1.1rem 1.2rem .9rem;
+    }
+    .template-window{
+      border-radius:1rem;
+      border:1px solid #222;
+      background:#111;
+      padding:.6rem .7rem .8rem;
+    }
+    .template-window-top{
+      display:flex;
+      gap:.3rem;
+      margin-bottom:.6rem;
+    }
+    .dot{width:7px;height:7px;border-radius:999px;background:#444;}
+    .template-window-body{
+      height:12rem;
+      border-radius:.7rem;
+      overflow:hidden;
+      background:#0f0f0f;
+    }
+    .template-window-body img{
+      width:100%;
+      height:100%;
+      object-fit:fill;
+      display:block;
+    }
+    .template-body{
+      padding:.4rem 1.2rem 1.1rem;
+    }
+    .template-body h3{
+      font-size:1.03rem;
+      font-weight:600;
+      margin-bottom:.25rem;
+      color:#fff;
+    }
+    .template-tag{
+      font-size:.8rem;
+      opacity:.75;
+      margin-bottom:.7rem;
+      text-transform:capitalize;
+      color:#fff;
+    }
+    .template-actions{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+    }
+    .template-btn{
+      flex:1;
+      padding:.55rem .8rem;
+      border-radius:.7rem;
+      border:1px solid #333;
+      background:transparent;
+      font-size:.85rem;
+      cursor:pointer;
+      transition:.2s;
+      color:#fff;
+    }
+    .template-btn.preview-btn:hover{background:#111;}
+    .template-btn.use-btn{
+      background:#fff;
+      color:#000;
+      border-color:#fff;
+    }
+    .template-btn.use-btn:hover{background:#ddd;}
+
+    .load-more-btn{
+      display:block;
+      margin:2rem auto 3rem;
+      padding:.9rem 2rem;
+      border-radius:999px;
+      border:1px solid #fff;
+      background:#fff;
+      color:#000;
+      font-size:.96rem;
+      cursor:pointer;
+      transition:.25s;
+    }
+    .load-more-btn:hover{background:#ddd;}
+
+    footer{
+      border-top:1px solid #222;
+      padding:0;
+    }
+
+    /* PREVIEW POPUP – virtual viewport with scale + device frame */
+    .preview-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      z-index:5000;
+      padding:1rem;
+    }
+    .preview-overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .preview-modal{
+      width:min(100%,1040px);
+      max-height:95vh;
+      background:#0b0b0b;
+      border-radius:1.1rem;
+      border:1px solid #222;
+      box-shadow:0 20px 50px rgba(0,0,0,.55);
+      padding:1.1rem 1.3rem 1.4rem;
+      display:flex;
+      flex-direction:column;
+      animation:popupSlideScale .3s ease;
+      color:#fff;
+    }
+    @keyframes popupSlideScale{
+      from{opacity:0;transform:translateY(16px) scale(.97);}
+      to{opacity:1;transform:translateY(0) scale(1);}
+    }
+    .preview-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:.8rem;
+    }
+    .preview-title{
+      font-size:1.1rem;
+      font-weight:600;
+      color:#fff;
+    }
+    .preview-close{
+      font-size:1.7rem;
+      background:none;
+      border:none;
+      cursor:pointer;
+      line-height:1;
+      color:#fff;
+    }
+    .preview-device-toggle{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+      margin-bottom:.3rem;
+    }
+    .device-btn{
+      padding:.45rem .9rem;
+      border-radius:999px;
+      border:1px solid #333;
+      background:#111;
+      cursor:pointer;
+      font-size:.85rem;
+      transition:.2s;
+      color:#fff;
+    }
+    .device-btn.active{
+      background:#fff;
+      border-color:#fff;
+      color:#000;
+    }
+    .preview-wrapper{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      overflow-y:auto;
+      overflow-x:hidden;
+      padding:.6rem .4rem .4rem;
+    }
+    .preview-device-shell{
+      position:relative;
+      transform-origin:top center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-top:.15rem;
+    }
+    .device-frame{
+      position:relative;
+      width:100%;
+      height:100%;
+      background:#111;
+      border-radius:26px;
+      padding:10px;
+      box-shadow:0 18px 45px rgba(0,0,0,.8);
+      overflow:hidden;
+    }
+    .device-frame::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:8px;
+      transform:translateX(-50%);
+      width:90px;
+      height:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,.2);
+      z-index:5;
+    }
+    .device-frame-inner{
+      position:relative;
+      width:100%;
+      height:100%;
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .device-frame.tablet{border-radius:26px;padding:10px;}
+    .device-frame.mobile{border-radius:38px;padding:12px;}
+    .device-frame.mobile::before{width:60px;height:6px;}
+    .preview-iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      background:white;
+      display:block;
+    }
+    .preview-loader{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#0b0b0b;
+      z-index:20;
+      border-radius:18px;
+      font-size:.9rem;
+      color:#fff;
+    }
+    .loader-spinner{
+      width:32px;
+      height:32px;
+      border:3px solid #333;
+      border-top-color:#fff;
+      border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .preview-error{
+      position:absolute;
+      inset:0;
+      background:#0b0b0b;
+      border-radius:18px;
+      display:none;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:1.5rem;
+      gap:1rem;
+      text-align:center;
+      z-index:30;
+      color:#fff;
+    }
+    .preview-error p{
+      opacity:.8;
+      font-size:.9rem;
+    }
+    .preview-error button{
+      padding:.6rem 1.2rem;
+      border-radius:.7rem;
+      background:#fff;
+      color:#000;
+      border:1px solid #fff;
+      cursor:pointer;
+      font-size:.9rem;
+    }
+    .preview-error button:hover{
+      background:#ddd;
+    }
+    .preview-footer{
+      margin-top:1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:.8rem;
+      font-size:.9rem;
+    }
+    .preview-note{
+      font-size:.85rem;
+      opacity:.7;
+      max-width:280px;
+    }
+    .preview-use-btn{
+      padding:.85rem 1.5rem;
+      border-radius:.8rem;
+      background:#fff;
+      color:#000;
+      border:1px solid #fff;
+      cursor:pointer;
+      font-size:.92rem;
+    }
+    .preview-use-btn:hover{background:#ddd;}
+    @media(max-width:640px){
+      .preview-modal{padding:.9rem .9rem 1rem;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<section class="hero">
+  <h1>Build and manage your website</h1>
+  <p>Pick a template to launch your site, then customize pages and styling inside the admin manager.</p>
+  <div class="search-container">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input id="searchInput" class="search-input" placeholder="Search templates by name or category">
+    </div>
+    <div id="suggestions" class="suggestions"></div>
+  </div>
+</section>
+
+<div class="controls">
+  <div class="dropdown" id="categoryDrop">
+    <div class="dropdown-btn">Category: All</div>
+    <div class="dropdown-menu">
+      <div data-filter="all">All</div>
+      <div data-filter="ecommerce">Ecommerce</div>
+      <div data-filter="legal">Legal</div>
+      <div data-filter="blog">Blog</div>
+      <div data-filter="fashion">Fashion</div>
+      <div data-filter="services">Services</div>
+      <div data-filter="creative">Creative</div>
+      <div data-filter="startup">Tech Startup</div>
+      <div data-filter="restaurant">Restaurant</div>
+      <div data-filter="photography">Photography</div>
+    </div>
+  </div>
+
+  <div class="dropdown" id="sortDrop">
+    <div class="dropdown-btn">Sort: Recommended</div>
+    <div class="dropdown-menu">
+      <div data-sort="recommended">Recommended</div>
+      <div data-sort="new">New Listings</div>
+      <div data-sort="top">Top Rated</div>
+    </div>
+  </div>
+</div>
+
+<div class="template-grid" id="templateGrid"></div>
+<button id="loadMoreBtn" class="load-more-btn">Load More</button>
+
+<div id="footer"></div>
+
+<!-- SHARED PREVIEW POPUP -->
+<div class="preview-overlay" id="previewOverlay">
+  <div class="preview-modal">
+    <div class="preview-header">
+      <div class="preview-title" id="previewTitle">Template Preview</div>
+      <button class="preview-close" id="previewClose">&times;</button>
+    </div>
+
+    <div class="preview-device-toggle">
+      <button class="device-btn" id="desktopBtn">Desktop</button>
+      <button class="device-btn" id="tabletBtn">Tablet</button>
+      <button class="device-btn" id="mobileBtn">Mobile</button>
+    </div>
+
+    <div class="preview-wrapper" id="previewWrapper">
+      <div class="preview-device-shell" id="previewDeviceShell">
+        <div class="device-frame" id="deviceFrame">
+          <div class="preview-loader" id="previewLoader">
+            <div class="loader-spinner"></div>
+          </div>
+
+          <div class="preview-error" id="previewError">
+            <p>This template can’t be embedded here.</p>
+            <button id="openLiveBtn">Open Live Demo</button>
+          </div>
+
+          <div class="device-frame-inner">
+            <iframe id="previewFrame" class="preview-iframe" src=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-footer">
+      <p class="preview-note">Preview layout only. You’ll fine-tune everything inside the builder.</p>
+      <button class="preview-use-btn" id="useTemplateBtn">Use this Template</button>
+    </div>
+  </div>
+</div>
+
+<script src="component-loader.js"></script>
+
+<script>
+  let activeFilter="all";
+  let sortBy="recommended";
+  let searchTerm="";
+  let offset=0;
+  const limit=9;
+
+  let total=0;
+  let templates=[];
+
+  const templateGrid=document.getElementById("templateGrid");
+  const loadMoreBtn=document.getElementById("loadMoreBtn");
+
+  function escapeHtml(s){
+    return String(s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
+  }
+
+  function setLoadMoreVisibility(){
+    loadMoreBtn.style.display = templates.length < total ? "block" : "none";
+  }
+
+  async function fetchTemplates({ reset=false } = {}){
+    if(reset){
+      offset = 0;
+      templates = [];
+      total = 0;
+    }
+
+    const params = new URLSearchParams({
+      category: activeFilter,
+      sort: sortBy,
+      search: searchTerm,
+      offset: String(offset),
+      limit: String(limit)
+    });
+
+    const res = await fetch(`api/templates/list.php?${params.toString()}`, { credentials: "same-origin" });
+    const data = await res.json();
+    if(!data.ok){
+      alert(data.error || "Failed to load templates");
+      return;
+    }
+
+    total = data.total || 0;
+    const page = (data.templates || []).map(t => ({
+      id: t.id,
+      title: t.title,
+      category: t.category,
+      file: t.file_url,
+      image: t.image_url,
+      previewLabel: t.preview_label || ""
+    }));
+
+    templates = templates.concat(page);
+    offset += page.length;
+
+    renderTemplates();
+  }
+
+  function renderTemplates(){
+    templateGrid.innerHTML = templates.map(t=>`
+      <div class="template-card"
+           data-template-id="${escapeHtml(t.id)}"
+           data-template-title="${escapeHtml(t.title)}"
+           data-template-file="${escapeHtml(t.file)}"
+           data-template-category="${escapeHtml(t.category)}">
+        <div class="template-thumb">
+          <div class="template-window">
+            <div class="template-window-top">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div class="template-window-body">
+              <img src="${escapeHtml(t.image)}" alt="${escapeHtml(t.title)} preview">
+            </div>
+          </div>
+        </div>
+        <div class="template-body">
+          <h3>${escapeHtml(t.title)}</h3>
+          <div class="template-tag">${escapeHtml(t.category)}</div>
+          <div class="template-actions">
+            <button class="template-btn preview-btn">Preview</button>
+            <button class="template-btn use-btn">Use Template</button>
+          </div>
+        </div>
+      </div>
+    `).join("");
+
+    setLoadMoreVisibility();
+    bindTemplateCards();
+  }
+
+  loadMoreBtn.onclick = function(){
+    fetchTemplates({ reset:false });
+  };
+
+  /* search + animated placeholder */
+  const searchInput=document.getElementById("searchInput");
+  const suggestions=document.getElementById("suggestions");
+
+  const placeholderPhrases=[
+    'Search "clothing store"',
+    'Try "portfolio"',
+    'Look for "restaurant"',
+    'Search "blog layout"',
+    'Find "photography" templates'
+  ];
+  let phraseIndex=0;
+  let charIndex=0;
+
+  function typePlaceholder(){
+    if(!searchInput) return;
+    const phrase=placeholderPhrases[phraseIndex];
+    searchInput.placeholder=phrase.slice(0,charIndex);
+    charIndex++;
+    if(charIndex<=phrase.length){
+      setTimeout(typePlaceholder,70);
+    }else{
+      setTimeout(function(){
+        charIndex=0;
+        phraseIndex=(phraseIndex+1)%placeholderPhrases.length;
+        typePlaceholder();
+      },1400);
+    }
+  }
+  typePlaceholder();
+
+  let suggestTimer = null;
+  async function fetchSuggestions(q){
+    const params = new URLSearchParams({
+      category: "all",
+      sort: "recommended",
+      search: q,
+      offset: "0",
+      limit: "6"
+    });
+    const res = await fetch(`api/templates/list.php?${params.toString()}`, { credentials: "same-origin" });
+    const data = await res.json();
+    if(!data.ok) return [];
+    return (data.templates || []).map(t => t.title);
+  }
+
+  searchInput.oninput=function(e){
+    searchTerm=(e.target.value || "").trim();
+    fetchTemplates({ reset:true });
+
+    if(suggestTimer) clearTimeout(suggestTimer);
+
+    if(searchTerm.length < 1){
+      suggestions.style.display="none";
+      return;
+    }
+
+    suggestTimer = setTimeout(async () => {
+      const list = await fetchSuggestions(searchTerm);
+      if(!list.length){
+        suggestions.style.display="none";
+        return;
+      }
+      suggestions.style.display="block";
+      suggestions.innerHTML = list.map(tt => `<div>${escapeHtml(tt)}</div>`).join("");
+    }, 180);
+  };
+
+  suggestions.onclick=function(e){
+    if(e.target.tagName==="DIV"){
+      searchInput.value=e.target.textContent;
+      searchTerm=e.target.textContent.trim();
+      suggestions.style.display="none";
+      fetchTemplates({ reset:true });
+    }
+  };
+
+  /* dropdown controls */
+  const categoryDrop=document.getElementById("categoryDrop");
+  const sortDrop=document.getElementById("sortDrop");
+
+  function openMenu(drop){
+    const menu = drop.querySelector(".dropdown-menu");
+    menu.style.display = "block";
+  }
+  function closeMenu(drop){
+    const menu = drop.querySelector(".dropdown-menu");
+    menu.style.display = "none";
+  }
+
+  categoryDrop.querySelector(".dropdown-btn").onclick=function(e){
+    e.stopPropagation();
+    openMenu(categoryDrop);
+    closeMenu(sortDrop);
+  };
+  sortDrop.querySelector(".dropdown-btn").onclick=function(e){
+    e.stopPropagation();
+    openMenu(sortDrop);
+    closeMenu(categoryDrop);
+  };
+
+  categoryDrop.querySelectorAll(".dropdown-menu div").forEach(function(item){
+    item.onclick=function(){
+      activeFilter=item.dataset.filter;
+      categoryDrop.querySelector(".dropdown-btn").textContent="Category: "+item.textContent;
+      closeMenu(categoryDrop);
+      fetchTemplates({ reset:true });
+    };
+  });
+
+  sortDrop.querySelectorAll(".dropdown-menu div").forEach(function(item){
+    item.onclick=function(){
+      sortBy=item.dataset.sort;
+      sortDrop.querySelector(".dropdown-btn").textContent="Sort: "+item.textContent;
+      closeMenu(sortDrop);
+      fetchTemplates({ reset:true });
+    };
+  });
+
+  document.addEventListener("click",function(e){
+    if(!categoryDrop.contains(e.target)) closeMenu(categoryDrop);
+    if(!sortDrop.contains(e.target)) closeMenu(sortDrop);
+  });
+
+  /* PREVIEW + USE TEMPLATE */
+
+  const previewOverlay = document.getElementById("previewOverlay");
+  const previewTitle   = document.getElementById("previewTitle");
+  const previewFrame   = document.getElementById("previewFrame");
+  const previewLoader  = document.getElementById("previewLoader");
+  const previewError   = document.getElementById("previewError");
+  const openLiveBtn    = document.getElementById("openLiveBtn");
+  const previewClose   = document.getElementById("previewClose");
+  const useTemplateBtn = document.getElementById("useTemplateBtn");
+  const deviceFrame    = document.getElementById("deviceFrame");
+  const previewDeviceShell = document.getElementById("previewDeviceShell");
+  const previewWrapper = document.getElementById("previewWrapper");
+
+  const desktopBtn = document.getElementById("desktopBtn");
+  const tabletBtn  = document.getElementById("tabletBtn");
+  const mobileBtn  = document.getElementById("mobileBtn");
+
+  const DEVICE_SIZES = {
+    desktop: { width: 1440, height: 900 },
+    tablet:  { width: 1024, height: 1366 },
+    mobile:  { width: 390,  height: 844 }
+  };
+
+  let currentTemplate = null;
+  let currentDeviceMode = "desktop";
+
+  function detectInitialDevice(){
+    const w = window.innerWidth;
+    if(w <= 600)  return "mobile";
+    if(w <= 1024) return "tablet";
+    return "desktop";
+  }
+
+  function updateDeviceButtons(){
+    [desktopBtn, tabletBtn, mobileBtn].forEach(b=>b.classList.remove("active"));
+    if(currentDeviceMode === "mobile")      mobileBtn.classList.add("active");
+    else if(currentDeviceMode === "tablet") tabletBtn.classList.add("active");
+    else                                    desktopBtn.classList.add("active");
+  }
+
+  function applyDeviceLayout(){
+    const size = DEVICE_SIZES[currentDeviceMode] || DEVICE_SIZES.desktop;
+    const width  = size.width;
+    const height = size.height;
+
+    previewDeviceShell.style.width  = width + "px";
+    previewDeviceShell.style.height = height + "px";
+
+    previewFrame.style.width  = width + "px";
+    previewFrame.style.height = height + "px";
+
+    const wrapperWidth = previewWrapper.clientWidth || previewWrapper.offsetWidth || width;
+    const maxWidth = wrapperWidth - 24;
+    const scale = Math.min(1, maxWidth / width);
+    previewDeviceShell.style.transform = "scale(" + scale + ")";
+  }
+
+  function setDevice(mode){
+    currentDeviceMode = mode || "desktop";
+
+    deviceFrame.classList.remove("tablet","mobile");
+    if(currentDeviceMode==="tablet") deviceFrame.classList.add("tablet");
+    if(currentDeviceMode==="mobile") deviceFrame.classList.add("mobile");
+
+    updateDeviceButtons();
+    applyDeviceLayout();
+  }
+
+  desktopBtn.onclick = ()=>setDevice("desktop");
+  tabletBtn.onclick  = ()=>setDevice("tablet");
+  mobileBtn.onclick  = ()=>setDevice("mobile");
+
+  window.addEventListener("resize", () => {
+    if(previewOverlay.classList.contains("show")){
+      applyDeviceLayout();
+    }
+  });
+
+  function openPreview(info){
+    currentTemplate = info;
+
+    previewTitle.textContent = info.title || "Template Preview";
+    previewError.style.display = "none";
+    previewLoader.style.display = "flex";
+    previewOverlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+
+    currentDeviceMode = detectInitialDevice();
+    setDevice(currentDeviceMode);
+
+    previewFrame.src = info.file || "";
+
+    previewFrame.onload = function(){
+      previewLoader.style.display = "none";
+    };
+  }
+
+  function closePreview(){
+    previewOverlay.classList.remove("show");
+    document.body.style.overflow = "";
+    previewFrame.src = "";
+    currentTemplate = null;
+  }
+
+  previewClose.onclick = closePreview;
+  previewOverlay.addEventListener("click",function(e){
+    if(e.target===previewOverlay) closePreview();
+  });
+
+  openLiveBtn.onclick = function(){
+    if(currentTemplate && currentTemplate.file){
+      window.open(currentTemplate.file,"_blank");
+    }
+  };
+
+  function mapCategoryToTheme(cat){
+    if(!cat) return "default";
+    const c = cat.toLowerCase();
+    if(c==="ecommerce") return "fashion";
+    if(c==="services" || c==="business") return "service";
+    if(c==="restaurant") return "restaurant";
+    if(c==="startup" || c==="blog" || c==="tech") return "tech";
+    if(c==="portfolio" || c==="creative" || c==="photography") return "portfolio";
+    return "default";
+  }
+
+  function slugify(title){
+    return (title || "my-site")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/^-+|-+$/g,"") || "my-site";
+  }
+
+  function handleTemplateSelect(info){
+  if(!info) return;
+
+  // ✅ store template id (main key)
+  localStorage.setItem("rc_selected_template_id", String(info.id || ""));
+
+  // keep your existing keys (safe)
+  localStorage.setItem("rc_selected_template_title", info.title || "");
+  localStorage.setItem("rc_selected_template_file", info.file || "");
+  localStorage.setItem("rc_selected_template_original_category", info.category || "");
+  localStorage.setItem("rc_selected_category", mapCategoryToTheme(info.category || ""));
+  localStorage.setItem("rc_selected_template_slug", slugify(info.title || "my-site"));
+
+  // optional: fallback in URL too
+  window.location.href = "use-template.php?id=" + encodeURIComponent(String(info.id || ""));
+
+}
+
+
+  function bindTemplateCards(){
+  document.querySelectorAll(".template-card").forEach(card=>{
+    const id = card.dataset.templateId || "";
+    const title = card.dataset.templateTitle || card.querySelector("h3")?.textContent || "Template Preview";
+    const file  = card.dataset.templateFile || "";
+    const category = card.dataset.templateCategory || "";
+
+    const previewBtn = card.querySelector(".preview-btn");
+    const useBtn     = card.querySelector(".use-btn");
+
+    if(previewBtn){
+      previewBtn.onclick = function(e){
+        e.preventDefault();
+        openPreview({ id, title, file, category });
+      };
+    }
+    if(useBtn){
+      useBtn.onclick = function(e){
+        e.preventDefault();
+        handleTemplateSelect({ id, title, file, category });
+      };
+    }
+  });
+}
+
+
+  // Initial fetch
+  fetchTemplates({ reset:true });
+</script>
+</body>
+</html>

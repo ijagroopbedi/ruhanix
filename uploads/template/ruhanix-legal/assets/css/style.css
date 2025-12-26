@@ -1,0 +1,600 @@
+/* =========================
+   Base / Reset
+========================= */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1b1b1b;
+  background: #ffffff;
+  line-height: 1.55;
+}
+img{ max-width: 100%; display: block; }
+a{ color: inherit; text-decoration: none; }
+ul{ margin: 0; padding: 0; list-style: none; }
+p{ margin: 0 0 1rem; }
+
+/* =========================
+   Layout helpers
+========================= */
+:root{
+  --container: 1120px;
+  --brand-orange: #f39c12; /* keep original vibe */
+  --nav-dark-1: #3b3b3b;
+  --nav-dark-2: #1f1f1f;
+  --muted: #666;
+  --border: #dedede;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --radius: 10px;
+  --btn-blue-1: #2e86d1;
+  --btn-blue-2: #0b5aa3;
+  --query-orange: #f39c12;
+}
+.container{
+  width: min(var(--container), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* Sticky footer layout (footer bottom but never hides content) */
+.site{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main{ flex: 1 0 auto; }
+footer{ margin-top: auto; }
+
+/* =========================
+   Topbar
+========================= */
+.topbar{
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .6rem 0;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.brand img{
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+.brand .name{
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.brand .tagline{
+  font-size: .92rem;
+  color: var(--muted);
+  margin-top: .2rem;
+}
+
+.topbar-contact{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  font-size: .95rem;
+}
+.pill{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.icon{
+  width: 34px; height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--btn-blue-1);
+  font-weight: 800;
+}
+
+/* =========================
+   Navbar (desktop)
+========================= */
+.navbar{
+  background: linear-gradient(var(--nav-dark-1), var(--nav-dark-2));
+}
+.nav-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .6rem 0;
+}
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+.nav-links a{
+  color: #fff;
+  padding: .7rem .95rem;
+  border-radius: 6px;
+  font-size: .95rem;
+}
+.nav-links a:hover,
+.nav-links a.active{
+  background: rgba(255,255,255,.12);
+}
+
+/* hamburger button */
+.nav-toggle{
+  display: none;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: .4rem .6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.nav-toggle:hover{ background: rgba(255,255,255,.12); }
+
+/* =========================
+   Off-canvas drawer (mobile sidebar)
+========================= */
+.drawer-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+  z-index: 80;
+}
+.drawer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: min(320px, 86vw);
+  background: linear-gradient(var(--nav-dark-1), var(--nav-dark-2));
+  transform: translateX(-105%);
+  transition: transform .22s ease;
+  z-index: 90;
+  box-shadow: 20px 0 40px rgba(0,0,0,.35);
+  display: flex;
+  flex-direction: column;
+}
+.drawer-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+}
+.drawer-title{
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.drawer-close{
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+}
+.drawer-nav a{
+  display: block;
+  color: #fff;
+  padding: .95rem 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.drawer-nav a:hover{ background: rgba(255,255,255,.08); }
+.drawer-nav a.active{
+  background: rgba(255,255,255,.12);
+}
+
+.drawer-footer{
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85);
+  font-size: .92rem;
+  display: grid;
+  gap: .35rem;
+}
+
+/* Open state */
+body.drawer-open .drawer-overlay{
+  opacity: 1;
+  pointer-events: auto;
+}
+body.drawer-open .drawer{
+  transform: translateX(0);
+}
+
+/* Mobile behavior */
+@media (max-width: 980px){
+  .topbar-contact{ display: none; }
+  .nav-links{ display: none; }     /* use drawer instead */
+  .nav-toggle{ display: inline-flex; }
+}
+
+/* =========================
+   Hero slider
+========================= */
+.hero{
+  position: relative;
+  min-height: 360px;
+  background: #000;
+  overflow: hidden;
+}
+.hero-slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .45s ease;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* ✅ full image */
+}
+
+.hero-slider{                 /* <-- use your real wrapper class here */
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;       /* ✅ change this to match your hero images */
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-slide::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,.10));
+}
+.hero-slide.active{ opacity: 1; }
+
+.hero-content{
+  position: relative;
+  z-index: 2;
+  height: 360px;
+  display: grid;
+  align-content: center;
+  padding: 1rem 0;
+}
+.hero-title{
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 900;
+  color: var(--brand-orange);
+  text-shadow: 0 3px 8px rgba(0,0,0,.55);
+}
+.hero-subtitle{
+  margin: .5rem 0 0;
+  color: #fff;
+  font-weight: 600;
+  opacity: .95;
+  max-width: 52ch;
+}
+
+.hero-controls{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .75rem;
+  z-index: 3;
+}
+.hero-controls button{
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+.hero-controls button:hover{ background: rgba(255,255,255,.30); }
+
+@media (max-width: 980px){
+  .hero{ min-height: 300px; }
+  .hero-content{ height: 300px; }
+}
+
+/* =========================
+   Buttons / cards
+========================= */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .7rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--btn-blue-2);
+  background: linear-gradient(var(--btn-blue-1), var(--btn-blue-2));
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:hover{ filter: brightness(1.05); }
+.btn:active{ transform: translateY(1px); }
+
+.card{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* =========================
+   Home panels
+========================= */
+.section{ padding: 3rem 0; }
+.section-title{
+  text-align: center;
+  font-size: clamp(1.6rem, 2vw, 2.2rem);
+  margin: 0 0 1.5rem;
+  font-weight: 700;
+}
+
+.panel-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.panel{
+  padding: 1.4rem;
+  border: 1px dashed #bdbdbd;
+  border-radius: var(--radius);
+  background: #fff;
+}
+.panel-icon{
+  width: 62px; height: 62px;
+  border-radius: 999px;
+  margin: 0 auto 1rem;
+  background: #e9f4ff;
+  border: 1px solid #cfe7ff;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #0b5aa3;
+  font-size: 1.6rem;
+}
+.panel h3{
+  text-align: center;
+  margin: 0 0 .75rem;
+  font-size: 1.4rem;
+}
+.panel h3.red{ color: #c21717; }
+.panel h3.blue{ color: #0b5aa3; }
+.panel h3.green{ color: #1f7a3a; }
+.panel .actions{
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 980px){
+  .panel-grid{ grid-template-columns: 1fr; }
+}
+
+/* Tiles row */
+.tile-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.tile{ overflow: hidden; }
+.tile img{
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+.tile .tile-body{ padding: 1.1rem; }
+.tile h3{ margin: 0 0 .35rem; font-size: 1.25rem; }
+.tile ul{
+  margin-top: .5rem;
+  padding-left: 1rem;
+  list-style: disc;
+  color: #2a2a2a;
+}
+.tile li{ margin: .25rem 0; font-size: .95rem; }
+
+@media (max-width: 980px){
+  .tile-grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   Inner page header + content
+========================= */
+.page-head{
+  background: #f7f7f7;
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+.page-head h1{
+  margin: 0;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+}
+.breadcrumb{
+  margin-top: .25rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+.content{ padding: 2rem 0; }
+.content .card{ padding: 1.25rem; }
+
+/* =========================
+   Query page (keep page grid, but form is SIMPLE like old image)
+========================= */
+.query-grid{
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 980px){
+  .query-grid{ grid-template-columns: 1fr; }
+}
+
+/* left services list */
+.service-list{
+  padding-left: 1.05rem;
+  list-style: disc;
+}
+.service-list li{
+  margin: .35rem 0;
+  font-size: .95rem;
+}
+
+/* right form block (same orange vibe like old site) */
+.query-form-wrap{
+  background: var(--query-orange);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.query-form-head{
+  padding: 1rem 1.1rem;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b1b1b;
+}
+
+/* ✅ SIMPLE FORM (NO GRID) */
+.query-form{
+  padding: 1.1rem;
+}
+
+/* table-style layout like screenshot */
+.query-form-table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 .85rem; /* space between rows */
+}
+.query-form-table td{
+  vertical-align: top;
+}
+.query-form-table .lbl{
+  width: 160px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  padding-right: .75rem;
+  white-space: nowrap;
+}
+@media (max-width: 620px){
+  .query-form-table .lbl{
+    width: auto;
+    display: block;
+    padding-right: 0;
+    white-space: normal;
+    margin-bottom: .35rem;
+  }
+  .query-form-table tr{
+    display: block;
+    margin-bottom: .35rem;
+  }
+  .query-form-table td{
+    display: block;
+    width: 100%;
+  }
+}
+
+.query-form input[type="text"],
+.query-form input[type="tel"],
+.query-form input[type="email"],
+.query-form textarea{
+  width: 100%;
+  padding: .7rem .8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,.25);
+  outline: none;
+  background: #fff;
+  font: inherit;
+}
+
+.query-form textarea{
+  min-height: 120px;
+  resize: vertical;
+}
+.query-form input:focus,
+.query-form textarea:focus{
+  border-color: rgba(11,90,163,.65);
+  box-shadow: 0 0 0 3px rgba(46,134,209,.18);
+}
+
+/* ✅ checkbox list like screenshot (single column, simple) */
+.services-checklist{
+  margin-top: .15rem;
+}
+.services-checklist label{
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: .45rem 0;
+  font-size: .95rem;
+  color: #1b1b1b;
+}
+
+/* IMPORTANT: undo text-input styling for checkboxes */
+.services-checklist input[type="checkbox"]{
+  width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+}
+
+/* submit alignment (like screenshot: left-ish, not centered) */
+.form-actions{
+  padding-top: .2rem;
+}
+.form-actions .btn{
+  min-width: 96px;
+}
+
+/* =========================
+   Footer (not fixed; stays bottom without hiding content)
+========================= */
+.footer{
+  background: #1f1f1f;
+  color: #cfcfcf;
+  margin-top: 2rem;
+}
+.footer-top{
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 1.25rem;
+}
+.footer a{ color: #9ad1ff; }
+.footer h4{
+  margin: 0 0 .8rem;
+  color: #fff;
+}
+.footer-bottom{
+  border-top: 1px solid rgba(255,255,255,.12);
+  text-align: center;
+  padding: 1rem 0;
+  color: #9a9a9a;
+  font-size: .95rem;
+}
+@media (max-width: 980px){
+  .footer-top{ grid-template-columns: 1fr; }
+}

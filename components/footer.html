@@ -1,0 +1,48 @@
+<!-- components/footer.html -->
+<style>
+  .site-footer {
+    border-top: 1px solid #222;
+    background: #000;
+    color: #fff;
+  }
+  .site-footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 1.4rem 1.2rem 1.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.88rem;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .footer-links a {
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.75;
+  }
+  .footer-links a:hover {
+    opacity: 1;
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>&copy; <span id="footerYear"></span> Ruhanix Creation</div>
+    <div class="footer-links">
+      <a href="templates.html">Templates</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("footerYear").textContent = new Date().getFullYear();
+</script>

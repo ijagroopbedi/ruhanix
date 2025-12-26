@@ -922,12 +922,32 @@
     }
 
     // API calls
+    function getSelectedTemplateId(){
+      const params = new URLSearchParams(window.location.search);
+      const urlTid = params.get("tid");
+      if(urlTid) return urlTid;
+
+      try{
+        const stored = JSON.parse(localStorage.getItem("rc_selected_template") || "{}");
+        if(stored.id) return stored.id;
+      }catch(e){}
+
+      return localStorage.getItem("rc_selected_template_id") || "";
+    }
+
+    function buildApiUrl(path){
+      const url = new URL(path, window.location.href);
+      const tid = getSelectedTemplateId();
+      if(tid) url.searchParams.set("tid", tid);
+      return url.toString();
+    }
+
     async function apiGet(url){
-      const res = await fetch(url, { credentials: "include" });
+      const res = await fetch(buildApiUrl(url), { credentials: "include" });
       return res.json();
     }
     async function apiPost(url, body){
-      const res = await fetch(url, {
+      const res = await fetch(buildApiUrl(url), {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type":"application/json" },

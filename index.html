@@ -647,6 +647,7 @@
     total = data.total || 0;
     const page = (data.templates || []).map(t => ({
       id: t.id,
+      slug: t.slug,
       title: t.title,
       category: t.category,
       file: t.file_url,
@@ -665,6 +666,7 @@
       <div class="template-card"
            data-template-id="${escapeHtml(t.id)}"
            data-template-title="${escapeHtml(t.title)}"
+           data-template-slug="${escapeHtml(t.slug || "")}"
            data-template-file="${escapeHtml(t.file)}"
            data-template-category="${escapeHtml(t.category)}">
         <div class="template-thumb">
@@ -954,49 +956,82 @@
       .replace(/^-+|-+$/g,"") || "my-site";
   }
 
+  function buildTemplateSelection(info){
+    const slug = (info.slug || "").trim() || slugify(info.title || "my-site");
+    return {
+      id: info.id || "",
+      slug,
+      title: info.title || "",
+      file: info.file || "",
+      category: info.category || "",
+      theme: mapCategoryToTheme(info.category || "")
+    };
+  }
+
+  function persistTemplateSelection(selection){
+    if(!selection) return;
+    localStorage.setItem("rc_selected_template", JSON.stringify(selection));
+    localStorage.setItem("rc_selected_template_id", String(selection.id || ""));
+    localStorage.setItem("rc_selected_template_title", selection.title || "");
+    localStorage.setItem("rc_selected_template_file", selection.file || "");
+    localStorage.setItem("rc_selected_template_original_category", selection.category || "");
+    localStorage.setItem("rc_selected_category", selection.theme || "default");
+    localStorage.setItem("rc_selected_template_slug", selection.slug || "my-site");
+  }
+
+  function goToAdmin(selection){
+    if(!selection || !selection.id){
+      alert("Template not ready. Please pick again.");
+      return;
+    }
+    const url = new URL("use-template.php", window.location.href);
+    url.searchParams.set("id", selection.id);
+    if(selection.slug) url.searchParams.set("slug", selection.slug);
+    window.location.href = url.toString();
+  }
+
   function handleTemplateSelect(info){
-  if(!info) return;
-
-  // ✅ store template id (main key)
-  localStorage.setItem("rc_selected_template_id", String(info.id || ""));
-
-  // keep your existing keys (safe)
-  localStorage.setItem("rc_selected_template_title", info.title || "");
-  localStorage.setItem("rc_selected_template_file", info.file || "");
-  localStorage.setItem("rc_selected_template_original_category", info.category || "");
-  localStorage.setItem("rc_selected_category", mapCategoryToTheme(info.category || ""));
-  localStorage.setItem("rc_selected_template_slug", slugify(info.title || "my-site"));
-
-  // optional: fallback in URL too
-  window.location.href = "use-template.php?id=" + encodeURIComponent(String(info.id || ""));
-
-}
+    if(!info) return;
+    const selection = buildTemplateSelection(info);
+    persistTemplateSelection(selection);
+    goToAdmin(selection);
+  }
 
 
   function bindTemplateCards(){
-  document.querySelectorAll(".template-card").forEach(card=>{
-    const id = card.dataset.templateId || "";
-    const title = card.dataset.templateTitle || card.querySelector("h3")?.textContent || "Template Preview";
-    const file  = card.dataset.templateFile || "";
-    const category = card.dataset.templateCategory || "";
+    document.querySelectorAll(".template-card").forEach(card=>{
+      const id = card.dataset.templateId || "";
+      const title = card.dataset.templateTitle || card.querySelector("h3")?.textContent || "Template Preview";
+      const slug  = card.dataset.templateSlug || "";
+      const file  = card.dataset.templateFile || "";
+      const category = card.dataset.templateCategory || "";
 
-    const previewBtn = card.querySelector(".preview-btn");
-    const useBtn     = card.querySelector(".use-btn");
+      const previewBtn = card.querySelector(".preview-btn");
+      const useBtn     = card.querySelector(".use-btn");
 
-    if(previewBtn){
-      previewBtn.onclick = function(e){
-        e.preventDefault();
-        openPreview({ id, title, file, category });
-      };
-    }
-    if(useBtn){
-      useBtn.onclick = function(e){
-        e.preventDefault();
-        handleTemplateSelect({ id, title, file, category });
-      };
-    }
-  });
-}
+      if(previewBtn){
+        previewBtn.onclick = function(e){
+          e.preventDefault();
+          openPreview({ id, slug, title, file, category });
+        };
+      }
+      if(useBtn){
+        useBtn.onclick = function(e){
+          e.preventDefault();
+          handleTemplateSelect({ id, slug, title, file, category });
+        };
+      }
+    });
+  }
+
+  if(useTemplateBtn){
+    useTemplateBtn.onclick = function(e){
+      e.preventDefault();
+      if(currentTemplate){
+        handleTemplateSelect(currentTemplate);
+      }
+    };
+  }
 
 
   // Initial fetch
